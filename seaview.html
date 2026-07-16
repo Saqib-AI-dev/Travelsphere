@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sea View Karachi</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --blue-primary: #0066CC;
@@ -18,19 +18,38 @@
         a { color: var(--blue-primary); text-decoration: none; }
 
         /* ===== Header ===== */
-        .header{ width:100%; background-color:blue; display:flex; justify-content:space-between; align-items:center; padding:20px 30px; position:relative; }
+        .header{
+            width:100%;
+            background: linear-gradient(135deg, var(--blue-primary), var(--blue-dark));
+            display:flex; justify-content:space-between; align-items:center;
+            padding:22px 36px; position:sticky; top:0; z-index:1000;
+            transition: padding 0.3s ease, box-shadow 0.3s ease;
+        }
+        .header.scrolled{
+            padding:12px 36px;
+            box-shadow: 0 8px 22px rgba(0,64,128,0.28);
+        }
         .left{ display:flex; align-items:center; gap:15px; }
         .left img{ width:70px; height:70px; border-radius:20px; }
-        .title{ color:white; font-size:40px; font-weight:bold; }
-        .title:hover{ color:black; text-shadow:0 0 5px #0099ff; cursor:pointer; }
-        .tagline{ color:white; font-size:15px; margin-top:-2px; }
-        .tagline:hover{ color:black; text-shadow:0 0 5px #0099ff; cursor:pointer; }
+        .title{ color:white; font-size:40px; font-weight:800; transition: text-shadow 0.3s ease; cursor:pointer; }
+        .title:hover{ text-shadow:0 0 14px var(--blue-light); }
+        .tagline{ color:white; font-size:15px; margin-top:-2px; transition: text-shadow 0.3s ease; cursor:pointer; }
+        .tagline:hover{ text-shadow:0 0 10px var(--blue-light); }
+
         .nav { display: flex; align-items: center; }
-        .nav ul{ list-style:none; display:flex; gap:35px; justify-content: center; align-items: center; margin:0; padding:0; }
-        .nav ul li{ color:white; font-size:20px; cursor:pointer; }
-        .nav ul li:hover{ padding: 5px; background-color: #f8f8f8; text-shadow:0 0 5px #b4c8d6; border-radius: 7px; }
-        .mylink { color: white; text-decoration: none; }
-        .mylink:hover { color: black; }
+        .nav ul{ list-style:none; display:flex; gap:35px; justify-content:center; align-items:center; margin:0; padding:0; }
+        .nav ul li{ font-size:20px; }
+        .mylink{
+            position:relative; color:white; text-decoration:none;
+            padding-bottom:6px; transition: color 0.3s ease;
+        }
+        .mylink::after{
+            content:''; position:absolute; left:0; bottom:0;
+            width:0; height:2px; background: var(--blue-light);
+            transition: width 0.3s ease;
+        }
+        .mylink:hover{ color: var(--blue-light); }
+        .mylink:hover::after{ width:100%; }
 
         /* Hamburger button - hidden on desktop */
         .hamburger{ display:none; flex-direction:column; justify-content:space-between; width:32px; height:24px; background:none; border:none; cursor:pointer; padding:0; z-index:20; }
@@ -40,22 +59,20 @@
         .hamburger.open span:nth-child(3){ transform:translateY(-10px) rotate(-45deg); }
 
         /* ===== Hero / Slideshow ===== */
-        .hero { position: relative; height: 90vh; overflow: hidden; margin-top: 0px; }
+        .hero { position: relative; height: 90vh; overflow: hidden; }
         .slideshow { position: relative; width: 100%; height: 100%; }
         .slide {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background-size: cover; background-position: center;
             opacity: 0; animation: fade 20s infinite;
         }
-        .slide:nth-child(1) { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('seaview/s1.jpg'); animation-delay: 0s; }
-        .slide:nth-child(2) { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('seaview/s2.jpg'); animation-delay: 4s; }
-        .slide:nth-child(3) { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('seaview/s3.jpg'); animation-delay: 8s; }
-        .slide:nth-child(4) { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('seaview/s4.jpg'); animation-delay: 12s; }
-        .slide:nth-child(5) { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('seaview/s5.jpg'); animation-delay: 16s; }
+        .slide:nth-child(1) { background-image: linear-gradient(rgba(0,64,128,0.55), rgba(0,64,128,0.55)), url('seaview/s1.jpg'); animation-delay: 0s; }
+        .slide:nth-child(2) { background-image: linear-gradient(rgba(0,64,128,0.55), rgba(0,64,128,0.55)), url('seaview/s2.jpg'); animation-delay: 4s; }
+        .slide:nth-child(3) { background-image: linear-gradient(rgba(0,64,128,0.55), rgba(0,64,128,0.55)), url('seaview/s3.jpg'); animation-delay: 8s; }
+        .slide:nth-child(4) { background-image: linear-gradient(rgba(0,64,128,0.55), rgba(0,64,128,0.55)), url('seaview/s4.jpg'); animation-delay: 12s; }
+        .slide:nth-child(5) { background-image: linear-gradient(rgba(0,64,128,0.55), rgba(0,64,128,0.55)), url('seaview/s5.jpg'); animation-delay: 16s; }
 
-        /* Fixed: previously each slide was only opaque for 2s out of every 4s slot,
-           causing a black flash between transitions. Now each slide fades in,
-           holds for most of its slot, then crossfades into the next. */
+        /* Each slide fades in, holds for most of its slot, then crossfades - no black flash */
         @keyframes fade {
             0%   { opacity: 0; }
             4%   { opacity: 1; }
@@ -68,14 +85,52 @@
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             text-align: center; color: white; z-index: 10; width: 90%;
         }
+        .hero-tag{
+            display:inline-block; background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.5); color:white;
+            padding: 6px 18px; border-radius: 50px; font-size: 0.9rem;
+            font-weight: 600; letter-spacing: 0.5px; margin-bottom: 1.2rem;
+            backdrop-filter: blur(4px);
+        }
         .hero-content h1 { font-size: 4.5rem; margin-bottom: 1rem; text-shadow: 3px 3px 15px rgba(0,0,0,0.8); color:white; }
         .hero-content p { font-size: 1.5rem; margin-bottom: 2rem; text-shadow: 1px 1px 10px rgba(0,0,0,0.9); color:white; }
-        .btn {
+
+        .btn-primary{
             background: var(--blue-primary); color:white; padding: 15px 40px;
             border-radius: 50px; font-weight: 600; font-size: 1.1rem; display: inline-block;
-            transition: all 0.3s;
+            border: 2px solid var(--blue-primary);
+            transition: background 0.3s ease, transform 0.3s ease;
         }
-        .btn:hover { background: #0052a3; transform: scale(1.08); }
+        .btn-primary:hover{ background: var(--blue-dark); transform: scale(1.04); }
+
+        .btn-secondary{
+            background: transparent; color:white; padding: 13px 38px;
+            border-radius: 50px; font-weight: 600; font-size: 1.1rem; display: inline-block;
+            border: 2px solid white;
+            transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-secondary:hover{ background: var(--blue-primary); border-color: var(--blue-primary); transform: scale(1.04); }
+
+        /* ===== Wave divider ===== */
+        .section-divider{ display:block; line-height:0; margin-top:-6px; }
+        .section-divider svg{ display:block; width:100%; height:80px; }
+
+        /* ===== Breadcrumb ===== */
+        .breadcrumb{
+            padding: 14px 5%; background: #f4f8fb; color: var(--blue-dark);
+            font-size: 0.9rem; font-weight: 500;
+        }
+        .breadcrumb a{ color: var(--blue-primary); }
+        .breadcrumb a:hover{ text-decoration: underline; }
+        .breadcrumb span{ color:#888; margin: 0 6px; }
+
+        /* ===== Scroll reveal ===== */
+        .reveal{
+            opacity:0;
+            transform:translateY(28px);
+            transition:opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.is-visible{ opacity:1; transform:translateY(0); }
 
         /* ===== Main content ===== */
         main { max-width: 1400px; margin: 4rem auto; padding: 0 5%; }
@@ -84,7 +139,6 @@
             font-size: 2.5rem; color: var(--blue-primary); margin-bottom: 1.5rem;
             position: relative; display: inline-block;
         }
-        /* Fixed: ::after underline had no background color, so it was invisible */
         h2::after {
             content: ''; position: absolute; width: 70px; height: 5px;
             bottom: -12px; left: 0; background: var(--blue-primary); border-radius: 3px;
@@ -96,15 +150,19 @@
         }
         .card {
             background: white; border-radius: 15px; overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1); transition: transform 0.3s;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .card:hover { transform: translateY(-12px); }
-        .card img { width: 100%; height: 220px; object-fit: cover; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 16px 34px rgba(0,64,128,0.18); }
+        .card img { width: 100%; height: 220px; object-fit: cover; display:block; transition: transform 0.4s ease; }
+        .card:hover img{ transform: scale(1.06); }
         .card-body { padding: 1.5rem; }
         .card h3 { color: var(--blue-primary); margin-bottom: 0.8rem; }
+
         .sidebar {
             background: var(--blue-light); padding: 2rem; border-radius: 15px; color: var(--blue-dark);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+        .sidebar:hover{ transform: translateY(-6px); box-shadow: 0 14px 28px rgba(0,64,128,0.15); }
         .sidebar h3 { color: var(--blue-primary); margin-bottom: 1rem; }
 
         /* ===== Gallery ===== */
@@ -143,43 +201,59 @@
             100% { transform: translateX(0%); }
         }
 
-        /* ===== Banner & Footer ===== */
+        /* ===== Banner ===== */
         .travel-banner {
             background: #eef7f4;
-            padding: 30px;
+            padding: 40px 30px;
             text-align: center;
-            border-top: 3px solid blue;
-            font-family: Arial, sans-serif;
+            border-top: 3px solid var(--blue-primary);
         }
-        .travel-banner h2 { margin-bottom: 10px; font-size: 24px; color: #2f4f4f; }
+        .travel-banner h2 { margin-bottom: 10px; font-size: 24px; color: var(--blue-dark); }
         .travel-banner h2::after { display: none; }
         .travel-banner p { font-size: 16px; color: #444; line-height: 1.6; max-width: 700px; margin: 0 auto 20px auto; }
-        .travel-banner .button { display: inline-block; padding: 12px 25px; background: blue; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; }
-        .travel-banner .button:hover { background: rgb(0, 113, 128); }
 
-        .main-footer { background: #222; color: #ccc; text-align: center; padding: 25px 10px; font-family: Arial, sans-serif; }
-        .footer-title { font-size: 22px; margin-bottom: 10px; color: white; }
-        .footer-links a { color: #ccc; text-decoration: none; margin: 0 10px; font-size: 14px; }
-        .footer-links a:hover { color: #34b47a; }
-        .footer-bottom { margin-top: 15px; font-size: 13px; color: #888; }
+        /* ===== Footer ===== */
+        .main-footer{ background:#1c1c1c; color:#ccc; padding: 50px 5% 20px; }
+        .footer-grid{
+            display:grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 2.5rem;
+            max-width: 1200px; margin: 0 auto; padding-bottom: 30px;
+        }
+        .footer-col h4{ color:white; font-size:1.1rem; margin-bottom:1rem; }
+        .footer-col p{ color:#aaa; font-size:0.9rem; }
+        .footer-col ul{ list-style:none; }
+        .footer-col ul li{ margin-bottom:0.6rem; }
+        .footer-col ul li a{ color:#ccc; font-size:0.9rem; transition: color 0.3s ease; }
+        .footer-col ul li a:hover{ color: var(--blue-light); }
+        .footer-socials{ display:flex; gap:12px; margin-top:1rem; }
+        .footer-socials a{
+            width:38px; height:38px; border-radius:50%; background:#2e2e2e;
+            display:flex; align-items:center; justify-content:center; color:white;
+            font-size:1rem; transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .footer-socials a:hover{ background: var(--blue-primary); transform: translateY(-3px); }
+        .footer-bottom{
+            text-align:center; padding-top:20px; border-top:1px solid #333;
+            font-size:0.85rem; color:#888;
+        }
 
         /* ===== Responsive rules ===== */
-
-        /* Tablet and below: switch to hamburger nav */
         @media (max-width:900px){
             .hamburger{ display:flex; }
             .nav{
                 position:absolute; top:100%; left:0; width:100%;
-                background-color:blue; overflow:hidden; max-height:0;
+                background: linear-gradient(135deg, var(--blue-primary), var(--blue-dark));
+                overflow:hidden; max-height:0;
                 transition:max-height 0.3s ease; z-index:10;
             }
             .nav.open{ max-height:400px; }
             .nav ul{ flex-direction:column; gap:0; }
             .nav ul li{ width:100%; text-align:center; padding:15px 0; border-top:1px solid rgba(255,255,255,0.2); }
+            .footer-grid{ grid-template-columns: 1fr 1fr; }
         }
 
         @media (max-width: 768px) {
             .header{ padding:15px 20px; }
+            .header.scrolled{ padding:10px 20px; }
             .title{ font-size:28px; }
             .hero-content h1 { font-size: 2.8rem; }
             .hero-content p { font-size: 1.2rem; }
@@ -188,22 +262,34 @@
             main > div[style] { grid-template-columns: 1fr !important; gap: 2rem !important; }
         }
 
+        @media (max-width: 700px){
+            .footer-grid{ grid-template-columns: 1fr; text-align:center; }
+            .footer-socials{ justify-content:center; }
+        }
+
         @media (max-width: 480px){
             .left img{ width:50px; height:50px; }
             .title{ font-size:22px; }
             .tagline{ font-size:12px; }
             .hero-content h1 { font-size: 2rem; }
             .hero-content p { font-size: 1rem; }
-            .btn { padding: 12px 28px; font-size: 1rem; }
+            .btn-primary, .btn-secondary { padding: 12px 28px; font-size: 1rem; }
             h2 { font-size: 1.8rem; }
             .gallery-slide img { height: 220px; }
+        }
+
+        @media (prefers-reduced-motion: reduce){
+            .reveal{ opacity:1; transform:none; transition:none; }
+            .header{ transition:none; }
+            .slide{ animation:none; opacity:1 !important; }
+            .gallery-slides{ animation:none; }
         }
     </style>
 </head>
 <body>
 
   <!-- HEADER -->
-  <div class="header">
+  <div class="header" id="siteHeader">
     <div class="left">
         <img src="logo.png" alt="logo">
         <div>
@@ -212,7 +298,6 @@
         </div>
     </div>
 
-    <!-- HAMBURGER BUTTON (mobile/tablet only) -->
     <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false">
         <span></span>
         <span></span>
@@ -240,14 +325,29 @@
           <div class="slide"></div>
       </div>
       <div class="hero-content">
+          <span class="hero-tag">Beach Destination</span>
           <h1>Sea View Karachi</h1>
-          <p>Clifton Beach & Do Darya – Karachi's Famous Seaside with Sunset Views & Food Street</p>
-          <a href="#book" class="btn">Plan Your Visit</a>
+          <p>Clifton Beach &amp; Do Darya — Karachi's Famous Seaside with Sunset Views &amp; Food Street</p>
+          <a href="#book" class="btn-primary">Plan Your Visit</a>
       </div>
   </section>
 
+  <!-- WAVE DIVIDER -->
+  <div class="section-divider">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#ffffff" d="M0,32 C240,80 480,80 720,48 C960,16 1200,16 1440,48 L1440,80 L0,80 Z"></path>
+      </svg>
+  </div>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+      <a href="home.html">Home</a><span>/</span>
+      <a href="destination.html">Destinations</a><span>/</span>
+      Sea View Karachi
+  </div>
+
   <main>
-      <div style="display:grid; grid-template-columns: 1fr 350px; gap:4rem; margin-bottom:5rem;">
+      <div class="reveal" style="display:grid; grid-template-columns: 1fr 350px; gap:4rem; margin-bottom:5rem;">
           <div>
               <h2>About Sea View</h2>
               <p>Sea View (Clifton Beach) is Karachi's most popular public beach and evening hangout spot. Stretching along the Arabian Sea, it's famous for camel & horse rides, beautiful sunsets, street food, and the lively Do Darya dining area with dozens of seaside restaurants.</p>
@@ -262,7 +362,7 @@
           </div>
       </div>
 
-      <section>
+      <section class="reveal">
           <h2>Top Things to Do</h2>
           <div class="grid-3">
               <div class="card">
@@ -289,8 +389,8 @@
           </div>
       </section>
 
-      <section class="gallery">
-          <h2 style="text-align:center; margin-bottom:2rem;">Photo Gallery</h2>
+      <section class="gallery reveal">
+          <h2 style="text-align:center; margin-bottom:2rem; margin-left:auto; margin-right:auto; display:block;">Photo Gallery</h2>
           <div class="gallery-slides">
               <div class="gallery-slide"><img src="seaview/s6.jpg" alt="Sea View"></div>
               <div class="gallery-slide"><img src="seaview/s2.jpg" alt="Sea View"></div>
@@ -300,13 +400,13 @@
           </div>
       </section>
 
-      <section>
+      <section class="reveal">
           <h2>Best Time to Visit</h2>
           <p><strong>October to March</strong> – Pleasant weather, cool breeze, perfect for evening walks.</p>
           <p>Avoid summer (April–September) due to extreme heat and humidity.</p>
       </section>
 
-      <section>
+      <section class="reveal">
           <h2>How to Reach</h2>
           <ul style="font-size:1.1rem; line-height:2;">
               <li><strong>By Car/Rickshaw:</strong> 20–30 minutes from Saddar</li>
@@ -315,7 +415,7 @@
           </ul>
       </section>
 
-      <section>
+      <section class="reveal">
           <h2>Tips for Visitors</h2>
           <p>Best time to visit: late afternoon to enjoy sunset</p>
           <p>Weekends are very crowded – visit on weekdays for peace</p>
@@ -324,30 +424,51 @@
       </section>
   </main>
 
-  <div class="travel-banner">
+  <div class="travel-banner reveal">
       <h2><strong>Safe travels with Travel Sphere</strong></h2>
-      <p>"Thanks for choosing TravelSphere as your travel companion. Our goal is to help you explore Pakistan with reliable tips, honest recommendations, and easy-to-follow guides. Keep discovering new places, stay curious, and let every journey become a beautiful story. Travel safe, and we hope to guide you again soon!"</p>
-      <a href="#" class="button">Join Now</a>
+      <p>Thanks for choosing TravelSphere as your travel companion. Our goal is to help you explore Pakistan with reliable tips, honest recommendations, and easy-to-follow guides. Keep discovering new places, stay curious, and let every journey become a beautiful story. Travel safe, and we hope to guide you again soon!</p>
+      <a href="#" class="btn-primary">Join Now</a>
   </div>
 
   <footer class="main-footer">
-      <p class="footer-title">Travel Sphere</p>
-      <div class="footer-links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms & Conditions</a>
-          <a href="#">Contact Us</a>
-          <a href="#">About Us</a>
+      <div class="footer-grid">
+          <div class="footer-col">
+              <h4>Travel Sphere</h4>
+              <p>Helping you discover Pakistan's most desired destinations, one journey at a time.</p>
+              <div class="footer-socials">
+                  <a href="#" aria-label="Facebook">f</a>
+                  <a href="#" aria-label="Instagram">i</a>
+                  <a href="#" aria-label="X / Twitter">x</a>
+              </div>
+          </div>
+          <div class="footer-col">
+              <h4>Explore</h4>
+              <ul>
+                  <li><a href="home.html">Home</a></li>
+                  <li><a href="destination.html">Destinations</a></li>
+                  <li><a href="travel tips.html">Travel Tips</a></li>
+              </ul>
+          </div>
+          <div class="footer-col">
+              <h4>Company</h4>
+              <ul>
+                  <li><a href="Aboutus.html">About Us</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+              </ul>
+          </div>
       </div>
-      <p class="footer-bottom">© 2025 Travel Sphere — All Rights Reserved.</p>
+      <div class="footer-bottom">© 2025 Travel Sphere — All Rights Reserved.</div>
   </footer>
 
 <script>
+    // Hamburger nav
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const navMenu = document.getElementById('navMenu');
 
     hamburgerBtn.addEventListener('click', () => {
         const isOpen = navMenu.classList.toggle('open');
-        hamburgerBtn.classList.toggle('open');
+        hamburgerBtn.classList.toggle('open', isOpen);
         hamburgerBtn.setAttribute('aria-expanded', isOpen);
     });
 
@@ -358,6 +479,48 @@
             hamburgerBtn.setAttribute('aria-expanded', 'false');
         });
     });
+
+    // Sticky header w/ hysteresis (prevents scroll-jitter)
+    const siteHeader = document.getElementById('siteHeader');
+    let headerTicking = false;
+    let isScrolled = false;
+
+    const updateHeader = () => {
+        const y = window.scrollY;
+        if (!isScrolled && y > 60) {
+            isScrolled = true;
+            siteHeader.classList.add('scrolled');
+        } else if (isScrolled && y < 30) {
+            isScrolled = false;
+            siteHeader.classList.remove('scrolled');
+        }
+        headerTicking = false;
+    };
+
+    const onScrollHeader = () => {
+        if (!headerTicking) {
+            headerTicking = true;
+            requestAnimationFrame(updateHeader);
+        }
+    };
+    window.addEventListener('scroll', onScrollHeader, { passive: true });
+    updateHeader();
+
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        revealEls.forEach(el => revealObserver.observe(el));
+    } else {
+        revealEls.forEach(el => el.classList.add('is-visible'));
+    }
 </script>
 
 </body>
