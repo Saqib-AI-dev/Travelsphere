@@ -327,6 +327,92 @@ img, video, iframe { max-width: 100%; height: auto; display: block; }
   .intro-inner { padding: 6px; }
 }
 
+/* ========== Hamburger Menu ========== */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 8px;
+}
+
+.hamburger span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* Responsive header/nav for tablet and mobile */
+@media (max-width: 768px) {
+    .header {
+        flex-wrap: wrap;
+        padding: 16px 20px;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .nav {
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+    }
+
+    .nav.open {
+        max-height: 400px;
+    }
+
+    .nav ul {
+        flex-direction: column;
+        gap: 0;
+        padding-top: 20px;
+    }
+
+    .nav ul li {
+        padding: 12px 0;
+        border-top: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .left img {
+        width: 55px;
+        height: 55px;
+    }
+
+    .title { font-size: 28px; }
+    .tagline { font-size: 13px; }
+
+    .image-box img {
+        width: 240px;
+        height: 240px;
+    }
+
+    .img-title { font-size: 20px; }
+}
+
+@media (max-width: 480px) {
+    .title { font-size: 22px; }
+    .tagline { font-size: 12px; }
+
+    .image-box { padding: 0 18px; }
+    .image-box img {
+        width: 180px;
+        height: 180px;
+    }
+    .img-title { font-size: 16px; margin-top: 10px; }
+}
+
 </style>
 </head>
 
@@ -344,8 +430,15 @@ img, video, iframe { max-width: 100%; height: auto; display: block; }
         </div>
     </div>
 
+    <!-- HAMBURGER BUTTON (mobile only) -->
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
     <!-- NAVIGATION -->
-    <div class="nav">
+    <div class="nav" id="navMenu">
         <ul>
             <li><a href="home.html" class="mylink">Home</a></li>
             <li><a href="destination.html" class="mylink">Destinations</a></li>
@@ -389,54 +482,54 @@ img, video, iframe { max-width: 100%; height: auto; display: block; }
 
         <!-- ORIGINAL IMAGES -->
         <div class="image-box">
-            <img src="seaview/s5.jpg">
+            <img src="seaview/s5.jpg" alt="Karachi Sea View">
             <p class="img-title">Karachi Sea_view</p>
         </div>
 
         <div class="image-box">
-            <img src="faisal/faisal.jpg">
+            <img src="faisal/faisal.jpg" alt="Faisal Mosque, Islamabad">
             <p class="img-title">Faisal Mosque</p>
         </div>
 
         <div class="image-box">
-            <img src="BabuSar top.jpg">
+            <img src="Babusar top.jpg" alt="BabuSar Top viewpoint">
             <p class="img-title">BabuSar top</p>
         </div>
 
         <div class="image-box">
-            <img src="naran/img1.jpg">
+            <img src="naran/img1.jpg" alt="Naran Valley">
             <p class="img-title">Naran-Valley</p>
         </div>
 
         <div class="image-box">
-            <img src="lahore/l1.jpg">
+            <img src="lahore/l1.jpg" alt="Lahore city view">
             <p class="img-title">Lahore</p>
         </div>
 
 
         <!-- DUPLICATE IMAGES FOR LOOP -->
         <div class="image-box">
-            <img src="seaview/s5.jpg">
+            <img src="seaview/s5.jpg" alt="Karachi Sea View">
             <p class="img-title">Karachi Sea_view</p>
         </div>
 
         <div class="image-box">
-            <img src="faisal/faisal.jpg">
+            <img src="faisal/faisal.jpg" alt="Faisal Mosque, Islamabad">
             <p class="img-title">Faisal Mosque</p>
         </div>
 
         <div class="image-box">
-            <img src="Babusar top.jpg">
+            <img src="Babusar top.jpg" alt="BabuSar Top viewpoint">
             <p class="img-title">BabuSar top</p>
         </div>
 
         <div class="image-box">
-            <img src="Naran kaghan valley.webp">
+            <img src="naran/Naran-kaghan-valley.jpg" alt="Naran Kaghan valley">
             <p class="img-title">Naran Kaghan</p>
         </div>
 
         <div class="image-box">
-            <img src="lahore/l1.jpg">
+            <img src="lahore/l1.jpg" alt="Lahore city view">
             <p class="img-title">Lahore</p>
         </div>
 
@@ -470,6 +563,26 @@ img, video, iframe { max-width: 100%; height: auto; display: block; }
 
     <p class="footer-bottom">© 2026 Travel Sphere — All Rights Reserved.</p>
 </footer>
+
+<script>
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navMenu = document.getElementById('navMenu');
+
+    hamburgerBtn.addEventListener('click', () => {
+        const isOpen = navMenu.classList.toggle('open');
+        hamburgerBtn.classList.toggle('active');
+        hamburgerBtn.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close menu when a nav link is tapped (mobile UX)
+    navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('open');
+            hamburgerBtn.classList.remove('active');
+            hamburgerBtn.setAttribute('aria-expanded', 'false');
+        });
+    });
+</script>
 
 </body>
 </html>

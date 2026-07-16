@@ -140,7 +140,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
-    color: white;
+    color: #1a1a1a;
     padding-top: 120px;
 }
 
@@ -148,6 +148,7 @@ body {
 .section-title {
     font-size: 28px;
     margin-bottom: 20px;
+    color: #0b2b2a;
 }
 
 /* Container for cards (makes them appear side-by-side) */
@@ -207,6 +208,96 @@ body {
     transition: 0.3s;
 }
 
+/* ========== Hamburger Menu ========== */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 8px;
+}
+
+.hamburger span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* Responsive header/nav for tablet and mobile.
+   Header is position:fixed, so the nav drops down as an overlay
+   instead of pushing page content around. */
+@media (max-width: 768px) {
+    .header {
+        flex-wrap: wrap;
+        padding: 18px 20px;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: blue;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+    }
+
+    .nav.open {
+        max-height: 400px;
+    }
+
+    .nav ul {
+        flex-direction: column;
+        gap: 0;
+        padding: 10px 20px 20px;
+    }
+
+    .nav ul li {
+        padding: 12px 0;
+        border-top: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .left img {
+        width: 55px;
+        height: 55px;
+    }
+
+    .title { font-size: 28px; }
+    .tagline { font-size: 13px; }
+
+    body { padding-top: 100px; }
+
+    .cards-container {
+        justify-content: center;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 420px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title { font-size: 22px; }
+    .tagline { font-size: 12px; }
+    .section-title { font-size: 22px; }
+    body { padding: 15px; padding-top: 95px; }
+}
 
 </style>
 
@@ -228,14 +319,21 @@ body {
         </div>
     </div>
 
+    <!-- HAMBURGER BUTTON (mobile only) -->
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
     <!-- NAVIGATION -->
-    <div class="nav">
+    <div class="nav" id="navMenu">
         <ul>
             <li><a href="home.html" class="mylink">Home</a></li>
             <li><a href="destination.html" class="mylink">Destinations</a></li>
-            <li><a href="travel tips.html"class ="mylink"> Travel Tips</li>
+            <li><a href="travel tips.html" class="mylink">Travel Tips</a></li>
             <li><a href="contact.html" class="mylink">Contact</a></li>
-            <li><a href="Aboutus.html" class="mylink">About us</a> </li>
+            <li><a href="Aboutus.html" class="mylink">About us</a></li>
         </ul>
     </div>
 
@@ -250,7 +348,7 @@ body {
         <!-- CARD 1 -->
         <div class="card">
             <!-- Top image -->
-            <a href="naran.html"><img src="naran/img3.jpg" alt="Beach Algarve"></a>
+            <a href="naran.html"><img src="naran/img3.jpg" alt="Naran Valley"></a>
 
             <!-- Text content -->
             <h3>Naran-Valley</h3>
@@ -330,10 +428,25 @@ Plan Your Visit</p>
         </div>
     </div>  
 
+<script>
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navMenu = document.getElementById('navMenu');
 
+    hamburgerBtn.addEventListener('click', () => {
+        const isOpen = navMenu.classList.toggle('open');
+        hamburgerBtn.classList.toggle('active');
+        hamburgerBtn.setAttribute('aria-expanded', isOpen);
+    });
 
-
-
+    // Close menu when a nav link is tapped (mobile UX)
+    navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('open');
+            hamburgerBtn.classList.remove('active');
+            hamburgerBtn.setAttribute('aria-expanded', 'false');
+        });
+    });
+</script>
 
 
 </body>

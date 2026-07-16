@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naran Valley </title>
+    <title>Naran Valley</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -17,15 +17,7 @@
         body { font-family: 'Poppins', sans-serif; background: var(--white); color: #333; line-height: 1.6; }
         a { color: var(--blue-primary); text-decoration: none; }
 
-       
-        .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
-        .logo { font-size: 1.9rem; font-weight: 700; color: var(--blue-dark); }
-        .logo span { color: var(--blue-primary); }
-        nav ul { display: flex; gap: 2rem; list-style: none; }
-        nav a { color: var(--blue-dark); font-weight: 600; }
-        nav a:hover { color: var(--blue-primary); }
-
-        /* Hero Slideshow (already perfect) */
+        /* Hero Slideshow */
         .hero { position: relative; height: 90vh; overflow: hidden; margin-top: 0px; }
         .slideshow { position: relative; width: 100%; height: 100%; }
         .slide {
@@ -33,27 +25,12 @@
             background-size: cover; background-position: center;
             opacity: 0; animation: fade 20s infinite;
         }
-       /* ←←← HERO SLIDESHOW – FIXED VERSION (Replace your old one with this) →→→ */
-.slide:nth-child(1) { 
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('naran/lakesaif.jpg'); 
-    animation-delay: 0s; 
-}
-.slide:nth-child(2) { 
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('naran/7.jpg'); 
-    animation-delay: 4s; 
-}
-.slide:nth-child(3) { 
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('naran/img4.jpg'); 
-    animation-delay: 8s; 
-}
-.slide:nth-child(4) { 
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('naran/img1.jpg'); 
-    animation-delay: 12s; 
-}
-.slide:nth-child(5) { 
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('naran/Naran-kaghan-valley.jpg'); 
-    animation-delay: 16s; 
-}
+        .slide:nth-child(1) { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('naran/lakesaif.jpg'); animation-delay: 0s; }
+        .slide:nth-child(2) { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('naran/7.jpg'); animation-delay: 4s; }
+        .slide:nth-child(3) { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('naran/img4.jpg'); animation-delay: 8s; }
+        .slide:nth-child(4) { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('naran/img1.jpg'); animation-delay: 12s; }
+        .slide:nth-child(5) { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('naran/Naran-kaghan-valley.jpg'); animation-delay: 16s; }
+
         @keyframes fade {
             0% { opacity: 0; }
             10% { opacity: 1; }
@@ -64,10 +41,10 @@
 
         .hero-content {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            text-align: center; color: whites; z-index: 10; width: 90%;
+            text-align: center; color: white; z-index: 10; width: 90%;
         }
-        .hero-content h1 { font-size: 4.5rem; margin-bottom: 1rem; text-shadow: 3px 3px 15px rgba(0,0,0,0.8);color:white; }
-        .hero-content p { font-size: 1.5rem; margin-bottom: 2rem; text-shadow: 1px 1px 10px rgba(0,0,0,0.9);color:white; }
+        .hero-content h1 { font-size: 4.5rem; margin-bottom: 1rem; text-shadow: 3px 3px 15px rgba(0,0,0,0.8); color:white; }
+        .hero-content p { font-size: 1.5rem; margin-bottom: 2rem; text-shadow: 1px 1px 10px rgba(0,0,0,0.9); color:white; }
         .btn {
             background: var(--blue-primary); color:white; padding: 15px 40px;
             border-radius: 50px; font-weight: 600; font-size: 1.1rem; display: inline-block;
@@ -80,12 +57,18 @@
         h2 {
             font-size: 2.5rem; color: var(--blue-primary); margin-bottom: 1.5rem;
             position: relative; display: inline-block;
-            
         }
         h2::after {
             content: ''; position: absolute; width: 70px; height: 5px;
-            bottom: -12px; left: 0;
+            bottom: -12px; left: 0; background: var(--blue-primary);
         }
+        /* Removes the blue underline only in the banner */
+        .travel-banner h2::after { display: none; }
+
+        .about-grid {
+            display: grid; grid-template-columns: 1fr 350px; gap: 4rem; margin-bottom: 5rem;
+        }
+
         .grid-3 {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem; margin-top: 2rem;
@@ -103,7 +86,7 @@
         }
         .sidebar h3 { color: var(--blue-primary); margin-bottom: 1rem; }
 
-        /* NEW: Gallery Slideshow (Pure CSS) */
+        /* Gallery Slideshow (Pure CSS) */
         .gallery {
             margin: 4rem 0;
             overflow: hidden;
@@ -112,11 +95,11 @@
         }
         .gallery-slides {
             display: flex;
-            width: 500%;           /* 5 images × 100% */
+            width: 500%;
             animation: slide 25s infinite;
         }
         .gallery-slide {
-            width: 20%;           /* 100% / 5 */
+            width: 20%;
             flex-shrink: 0;
         }
         .gallery-slide img {
@@ -139,200 +122,105 @@
             100% { transform: translateX(0%); }
         }
 
+        /* Header */
+        body{ margin:0; background-color:white; font-family:sans-serif; }
+        .header{ width:100%; background-color:blue; display:flex; justify-content:space-between; align-items:center; padding:20px; position:relative; }
+        .left{ display:flex; align-items:center; gap:15px; }
+        .left img{ width:70px; height:70px; border-radius:20px; }
+        .title{ color:white; font-size:40px; font-weight:bold; }
+        .title:hover{ color:black; text-shadow:0 0 5px #0099ff; cursor:pointer; }
+        .tagline{ color:white; font-size:15px; margin-top:-2px; }
+        .tagline:hover{ color:black; text-shadow:0 0 5px #0099ff; cursor:pointer; }
+
+        .nav { display: flex; align-items: center; }
+        .nav ul{ list-style:none; display:flex; gap:35px; justify-content: center; align-items: center; }
+        .nav ul li{ color:white; font-size:20px; cursor:pointer; }
+        .nav ul li a:hover{ padding: 5px; background-color: #f8f8f8; text-shadow:0 0 5px #b4c8d6; border-radius: 7px; color:#0066CC; }
+
+        /* normal link */
+        .mylink { color: white; text-decoration: none; }
+        /* visited link */
+        .mylink:visited { color: white; }
+        /* mouse over */
+        .mylink:hover { color: black; }
+        /* clicking */
+        .mylink:active { color: black; }
+
+        /* Hamburger */
+        .hamburger {
+            display:none; flex-direction:column; justify-content:space-between;
+            width:32px; height:24px; background:transparent; border:none; cursor:pointer; padding:0; z-index:200;
+        }
+        .hamburger span { display:block; height:3px; width:100%; background:white; border-radius:2px; }
+
+        /* TripAdvisor Bottom Banner */
+        .travel-banner {
+            background: #eef7f4;
+            padding: 30px;
+            text-align: center;
+            border-top: 3px solid blue;
+            font-family: Arial, sans-serif;
+        }
+        .travel-banner h2 { margin-bottom: 10px; font-size: 24px; color: #2f4f4f; }
+        .travel-banner p { font-size: 16px; color: #444; line-height: 1.6; max-width: 700px; margin: 0 auto 20px auto; }
+        .travel-banner .button { display: inline-block; padding: 12px 25px; background: blue; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; transition: 0.3s; }
+        .travel-banner .button:hover { background: rgb(0, 113, 128); }
+
+        /* Main Footer */
+        .main-footer { background: #222; color: #ccc; text-align: center; padding: 25px 10px; font-family: Arial, sans-serif; }
+        .footer-title { font-size: 22px; margin-bottom: 10px; color: white; }
+        .footer-links a { color: #ccc; text-decoration: none; margin: 0 10px; font-size: 14px; transition: 0.3s; }
+        .footer-links a:hover { color: #34b47a; }
+        .footer-bottom { margin-top: 15px; font-size: 13px; color: #888; }
+
+        /* Responsive: nav collapses to hamburger */
+        @media (max-width: 900px) {
+            .hamburger { display:flex; }
+            .nav ul {
+                display:none;
+                position:absolute;
+                top:100%; left:0; width:100%;
+                background: var(--blue-primary);
+                flex-direction:column;
+                gap:0;
+                padding:10px 0;
+                box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            }
+            .nav ul.open { display:flex; }
+            .nav ul li { width:100%; text-align:center; padding:14px 20px; font-size:18px; }
+        }
+
+        /* Responsive: stack content layout */
         @media (max-width: 768px) {
             .hero-content h1 { font-size: 2.8rem; }
             .hero-content p { font-size: 1.2rem; }
             .hero { height: 70vh; }
             .gallery-slide img { height: 300px; }
+            .about-grid { grid-template-columns: 1fr; gap: 2rem; }
         }
 
-        /*my editing*/
-        /*Header */
-          /* Main Page Background */
-    body{
-        margin:0;
-        background-color:white;
-        font-family:sans-serif;
-    }
+        @media (max-width: 700px) {
+            main { padding: 0 6%; }
+            h2 { font-size: 2rem; }
+        }
 
-    /* Header Container */
-    .header{
-        width:100%;
-        background-color:blue;
-        display:flex;
-        justify-content:space-between;
-        padding:20px;
-    }
-
-    /* Left Side: Logo + Name */
-    .left{
-        display:flex;
-        align-items:center;
-        gap:15px;
-    }
-
-    .left img{
-        width:70px;
-        height:70px;
-        border-radius:20px;
-    }
-
-    .title{
-        color:white;
-        font-size:40px;
-        font-weight:bold;
-    }
-    .title:hover{
-        color:black;
-        text-shadow:0 0 5px #0099ff;
-        cursor:pointer;
-    }
-
-    .tagline{
-        color:white;
-        font-size:15px;
-        margin-top:-2px;
-    }
-    .tagline:hover{
-        color:black;
-        text-shadow:0 0 5px #0099ff;
-        cursor:pointer;
-    }
-
-    /* Navigation Menu */
-    .nav {
-    display: flex;
-    align-items: center;
-}
-
-    .nav ul{
-        list-style:none;
-        display:flex;
-        gap:35px;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .nav ul li{
-        color:white;
-        font-size:20px;
-        cursor:pointer;
-        
-    }
-    .nav ul li :hover{
-        padding: 5px;
-        background-color: #f8f8f8;
-        text-shadow:0 0 5px #b4c8d6;
-        border-radius: 7px;
-    }
-
-   /* normal link */
-.mylink {
-    color: white;          /* link text color */
-    text-decoration: none; /* removes underline */
-}
-
-/* visited link */
-.mylink:visited {
-    color: white;          /* keep same color after clicking */
-}
-
-/* when mouse is over */
-.mylink:hover {
-    color: black;            /* optional: change color on hover */
-}
-
-/* when clicking */
-.mylink:active {
-    color: black;
-}
-
-
-/*Footer details*/
-
-/* --- TripAdvisor Bottom Banner --- */
-.travel-banner {
-    background: #eef7f4;
-    padding: 30px;
-    text-align: center;
-    border-top: 3px solid blue;
-    font-family: Arial, sans-serif;
-}
-
-.travel-banner h2 {
-
-    margin-bottom: 10px;
-    font-size: 24px;
-    color: #2f4f4f;
-}
-
-.travel-banner p {
-    font-size: 16px;
-    color: #444;
-    line-height: 1.6;
-    max-width: 700px;
-    margin: 0 auto 20px auto;
-}
-
-.travel-banner .button {
-    display: inline-block;
-    padding: 12px 25px;
-    background: blue;
-    color: white;
-    text-decoration: none;
-    border-radius: 6px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.travel-banner .button:hover {
-    background: rgb(0, 113, 128);
-}
-
-
-/* --- Main Footer --- */
-.main-footer {
-    background: #222;
-    color: #ccc;
-    text-align: center;
-    padding: 25px 10px;
-    font-family: Arial, sans-serif;
-}
-
-.footer-title {
-    font-size: 22px;
-    margin-bottom: 10px;
-    color: white;
-}
-
-.footer-links a {
-    color: #ccc;
-    text-decoration: none;
-    margin: 0 10px;
-    font-size: 14px;
-    transition: 0.3s;
-}
-
-.footer-links a:hover {
-    color: #34b47a;
-}
-
-.footer-bottom {
-    margin-top: 15px;
-    font-size: 13px;
-    color: #888;
-}
-/*hello*/
-
-
+        /* Responsive: shrink header/text on small phones */
+        @media (max-width: 480px) {
+            .header { padding: 12px 15px; }
+            .left img { width:50px; height:50px; border-radius:14px; }
+            .title { font-size: 26px; }
+            .tagline { font-size: 12px; }
+            .hero-content h1 { font-size: 2rem; }
+            .hero-content p { font-size: 1rem; }
+            .btn { padding: 12px 28px; font-size: 1rem; }
+            .gallery-slide img { height: 220px; }
+        }
     </style>
 </head>
 <body>
 
   <!-- HEADER SECTION -->
-<div class="header">
-
-    <!-- LEFT SIDE -->
+  <div class="header">
     <div class="left">
         <img src="logo.png" alt="logo">
         <div>
@@ -341,9 +229,11 @@
         </div>
     </div>
 
-    <!-- NAVIGATION -->
     <div class="nav">
-        <ul>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul id="navMenu">
             <li><a href="home.html" class="mylink">Home</a></li>
             <li><a href="destination.html" class="mylink">Destinations</a></li>
             <li><a href="travel tips.html" class="mylink">Travel Tips</a></li>
@@ -351,8 +241,7 @@
             <li><a href="Aboutus.html" class="mylink">About Us</a></li>
         </ul>
     </div>
-
-</div>
+  </div>
 
     <!-- Hero Slideshow -->
     <section class="hero">
@@ -366,16 +255,16 @@
         <div class="hero-content">
             <h1>Naran Valley</h1>
             <p>Pakistan's Hidden Paradise – Crystal Lakes, Snow-Capped Peaks & Lush Green Meadows</p>
-            <a href="#book" class="btn">Plan Your Trip</a>
+            <a href="#best-time" class="btn">Plan Your Trip</a>
         </div>
     </section>
 
     <main>
         <!-- About + Quick Facts -->
-        <div style="display:grid; grid-template-columns: 1fr 350px; gap:4rem; margin-bottom:5rem;">
+        <div class="about-grid">
             <div>
-                <h2 style="text-decoration: none;">About Naran</h2>
-                <p>Naran is a scenic hill station in the Kaghan Valley, Khyber Pakhtunkhwa, sitting at an altitude of 2,409 meters. Famous for Lake Saif-ul-Malook, it’s the gateway to Babusar Pass and a perfect summer retreat.</p>
+                <h2>About Naran</h2>
+                <p>Naran is a scenic hill station in the Kaghan Valley, Khyber Pakhtunkhwa, sitting at an altitude of 2,409 meters. Famous for Lake Saif-ul-Malook, it's the gateway to Babusar Pass and a perfect summer retreat.</p>
             </div>
             <div class="sidebar">
                 <h3>Quick Facts</h3>
@@ -415,7 +304,7 @@
             </div>
         </section>
 
-        <!-- NEW: Full-width Photo Slideshow (Gallery) -->
+        <!-- Full-width Photo Slideshow (Gallery) -->
         <section class="gallery">
             <h2 style="text-align:center; margin-bottom:2rem;">Photo Gallery</h2>
             <div class="gallery-slides">
@@ -437,7 +326,7 @@
             </div>
         </section>
 
-        <section>
+        <section id="best-time">
             <h2>Best Time to Visit</h2>
             <p><strong>May to September</strong> – Roads open, pleasant weather (10–25°C). Peak season: June–August.</p>
             <p>Avoid October–April due to heavy snow.</p>
@@ -445,7 +334,7 @@
 
         <section>
             <h2>How to Reach</h2>
-            <ul style="font-size:1.1rem; line-height:2;">
+            <ul style="font-size:1.1rem; line-height:2; padding-left:1.2rem;">
                 <li><strong>By Road:</strong> 6–7 hours from Islamabad via Mansehra</li>
                 <li><strong>Public Transport:</strong> Buses/Hiace from Rawalpindi</li>
                 <li><strong>Nearest Airport:</strong> Islamabad (ISB)</li>
@@ -459,31 +348,41 @@
         </section>
     </main>
 
-
     <!-- TripAdvisor Style Bottom Banner -->
-<div class="travel-banner">
-   <h2 ><strong>Safe travels with Travel Sphere</strong> </h2>
-    <p>
-        
-        "Thanks for choosing TravelSphere as your travel companion. Our goal is to help you explore Pakistan with reliable tips,
-         honest recommendations, and easy-to-follow guides. 
-         Keep discovering new places, stay curious, and let every journey become a beautiful story. Travel safe, and we hope to guide you again soon!"
-    </p>
-
-    <a href="#" class="button">Join Now</a>
-</div>
-    <!-- Footer Section -->
-<footer class="main-footer">
-    <p class="footer-title">Travel Sphere</p>
-
-    <div class="footer-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms & Conditions</a>
-        <a href="#">Contact Us</a>
-        <a href="#">About Us</a>
+    <div class="travel-banner">
+        <h2><strong>Safe travels with Travel Sphere</strong></h2>
+        <p>"Thanks for choosing TravelSphere as your travel companion. Our goal is to help you explore Pakistan with reliable tips, honest recommendations, and easy-to-follow guides. Keep discovering new places, stay curious, and let every journey become a beautiful story. Travel safe, and we hope to guide you again soon!"</p>
+        <a href="#" class="button">Join Now</a>
     </div>
 
-    <p class="footer-bottom">© 2025 Travel Sphere — All Rights Reserved.</p>
-</footer>
+    <!-- Footer Section -->
+    <footer class="main-footer">
+        <p class="footer-title">Travel Sphere</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms &amp; Conditions</a>
+            <a href="#">Contact Us</a>
+            <a href="#">About Us</a>
+        </div>
+        <p class="footer-bottom">© 2025 Travel Sphere — All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburgerBtn.addEventListener('click', () => {
+            const isOpen = navMenu.classList.toggle('open');
+            hamburgerBtn.setAttribute('aria-expanded', isOpen);
+        });
+
+        // Close menu after a link is tapped (mobile UX)
+        navMenu.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                navMenu.classList.remove('open');
+                hamburgerBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+    </script>
 </body>
 </html>

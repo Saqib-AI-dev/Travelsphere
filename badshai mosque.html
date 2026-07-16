@@ -42,8 +42,8 @@
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             text-align: center; color: white; z-index: 10; width: 90%;
         }
-        .hero-content h1 { font-size: 4.5rem; margin-bottom: 1rem; text-shadow: 3px 3px 15px rgba(0,0,0,0.8);color:white; }
-        .hero-content p { font-size: 1.5rem; margin-bottom: 2rem; text-shadow: 1px 1px 10px rgba(0,0,0,0.9);color:white; }
+        .hero-content h1 { font-size: 4.5rem; margin-bottom: 1rem; text-shadow: 3px 3px 15px rgba(0,0,0,0.8); color:white; }
+        .hero-content p { font-size: 1.5rem; margin-bottom: 2rem; text-shadow: 1px 1px 10px rgba(0,0,0,0.9); color:white; }
         .btn {
             background: var(--blue-primary); color:white; padding: 15px 40px;
             border-radius: 50px; font-weight: 600; font-size: 1.1rem; display: inline-block;
@@ -59,7 +59,7 @@
         }
         h2::after {
             content: ''; position: absolute; width: 70px; height: 5px;
-             bottom: -12px; left: 0;
+            bottom: -12px; left: 0; background: var(--blue-primary);
         }
 
         .grid-3 {
@@ -114,8 +114,8 @@
             100% { transform: translateX(0%); }
         }
 
-        body{ margin:0; background-color:white; font-family:sans-serif; }
-        .header{ width:100%; background-color:blue; display:flex; justify-content:space-between; padding:20px; }
+        /* ---- Header / Nav ---- */
+        .header{ width:100%; background-color: var(--blue-primary); display:flex; justify-content:space-between; align-items:center; padding:20px; position: relative; }
         .left{ display:flex; align-items:center; gap:15px; }
         .left img{ width:70px; height:70px; border-radius:20px; }
         .title{ color:white; font-size:40px; font-weight:bold; }
@@ -125,9 +125,34 @@
         .nav { display: flex; align-items: center; }
         .nav ul{ list-style:none; display:flex; gap:35px; justify-content: center; align-items: center; }
         .nav ul li{ color:white; font-size:20px; cursor:pointer; }
-        .nav ul li :hover{ padding: 5px; background-color: #f8f8f8; text-shadow:0 0 5px #b4c8d6; border-radius: 7px; }
+        .nav ul li:hover{ padding: 5px; background-color: #f8f8f8; text-shadow:0 0 5px #b4c8d6; border-radius: 7px; }
         .mylink { color: white; text-decoration: none; }
         .mylink:hover { color: black; }
+
+        /* Hamburger button (hidden on desktop) */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 32px;
+            height: 24px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 20;
+        }
+        .hamburger span {
+            display: block;
+            height: 4px;
+            width: 100%;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
 
         .travel-banner {
             background: #eef7f4;
@@ -147,11 +172,58 @@
         .footer-links a:hover { color: #34b47a; }
         .footer-bottom { margin-top: 15px; font-size: 13px; color: #888; }
 
+        /* ---- Responsive breakpoints ---- */
+        @media (max-width: 900px) {
+            .hamburger { display: flex; }
+            .nav ul {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: var(--blue-primary);
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+            .nav ul.open {
+                max-height: 400px;
+            }
+            .nav ul li {
+                width: 100%;
+                text-align: center;
+                padding: 15px 0;
+                border-top: 1px solid rgba(255,255,255,0.15);
+            }
+        }
+
         @media (max-width: 768px) {
             .hero-content h1 { font-size: 2.8rem; }
             .hero-content p { font-size: 1.2rem; }
             .hero { height: 70vh; }
             .gallery-slide img { height: 300px; }
+            main > div[style] {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+        }
+
+        @media (max-width: 700px) {
+            main { margin: 2.5rem auto; padding: 0 6%; }
+            h2 { font-size: 2rem; }
+            .grid-3 { gap: 1.5rem; }
+        }
+
+        @media (max-width: 480px) {
+            .header { padding: 12px 15px; }
+            .left img { width: 48px; height: 48px; border-radius: 12px; }
+            .title { font-size: 24px; }
+            .tagline { font-size: 12px; }
+            .hero-content h1 { font-size: 2rem; }
+            .hero-content p { font-size: 1rem; }
+            .btn { padding: 12px 28px; font-size: 1rem; }
+            h2 { font-size: 1.6rem; }
         }
     </style>
 </head>
@@ -165,12 +237,17 @@
             <div class="tagline">Desired Destinations</div>
         </div>
     </div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
     <div class="nav">
-        <ul>
+        <ul id="navMenu">
             <li><a href="home.html" class="mylink">Home</a></li>
             <li><a href="destination.html" class="mylink">Destinations</a></li>
             <li><a href="travel tips.html" class="mylink">Travel Tips</a></li>
-            <li><a href="contact.html.html" class="mylink">Contact</a></li>
+            <li><a href="contact.html" class="mylink">Contact</a></li>
             <li><a href="Aboutus.html" class="mylink">About Us</a></li>
         </ul>
     </div>
@@ -228,14 +305,14 @@
                   <img src="lahore/l8.jpg" alt="Lahore Fort">
                   <div class="card-body">
                       <h3>Lahore Fort & Minar-e-Pakistan</h3>
-                      <p>UNESCO site + symbol of Pakistan’s independence.</p>
+                      <p>UNESCO site + symbol of Pakistan's independence.</p>
                   </div>
               </div>
           </div>
       </section>
 
       <section class="gallery">
-          <h2 style="text-align:center; margin-bottom:2rem;">Photo Gallery</h2>
+          <h2 style="text-align:center; margin-bottom:2rem; display:block;">Photo Gallery</h2>
           <div class="gallery-slides">
               <div class="gallery-slide"><img src="lahore/l1.jpg" alt="Lahore"></div>
               <div class="gallery-slide"><img src="lahore/l2.jpg" alt="Lahore"></div>
@@ -253,7 +330,7 @@
 
       <section>
           <h2>How to Reach</h2>
-          <ul style="font-size:1.1rem; line-height:2;">
+          <ul style="font-size:1.1rem; line-height:2; padding-left: 1.2rem;">
               <li><strong>By Air:</strong> Direct flights to Allama Iqbal International Airport</li>
               <li><strong>By Train:</strong> Excellent rail network from Karachi, Islamabad, etc.</li>
               <li><strong>By Road:</strong> Motorway M2 from Islamabad (4 hours)</li>
@@ -262,7 +339,7 @@
 
       <section>
           <h2>Food & Shopping Tips</h2>
-          <p>Don’t miss: Butt Karahi, Phajja Siri Paye, Anarkali Bazaar, Liberty Market</p>
+          <p>Don't miss: Butt Karahi, Phajja Siri Paye, Anarkali Bazaar, Liberty Market</p>
           <p>Food Street comes alive after 8 PM – best experience on weekends</p>
           <p>Try traditional Lahori breakfast: Halwa Puri & Lassi</p>
       </section>
@@ -270,7 +347,7 @@
 
   <div class="travel-banner">
       <h2><strong>Safe travels with Travel Sphere</strong></h2>
-      <p>"Thanks for choosing TravelSphere as your travel companion. Our goal is to help you explore Pakistan with reliable tips, honest recommendations, and easy-to-follow guides. Keep discovering new places, stay curious, and let every journey become a beautiful story. Travel safe, and we hope to guide you again soon!"</p>
+      <p>Thanks for choosing TravelSphere as your travel companion. Our goal is to help you explore Pakistan with reliable tips, honest recommendations, and easy-to-follow guides. Keep discovering new places, stay curious, and let every journey become a beautiful story. Travel safe, and we hope to guide you again soon!</p>
       <a href="#" class="button">Join Now</a>
   </div>
 
@@ -284,5 +361,25 @@
       </div>
       <p class="footer-bottom">© 2025 Travel Sphere — All Rights Reserved.</p>
   </footer>
+
+  <script>
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navMenu = document.getElementById('navMenu');
+
+    hamburgerBtn.addEventListener('click', () => {
+      const isOpen = navMenu.classList.toggle('open');
+      hamburgerBtn.classList.toggle('open', isOpen);
+      hamburgerBtn.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close menu when a nav link is tapped (mobile)
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+        hamburgerBtn.classList.remove('open');
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
 </body>
 </html>

@@ -42,8 +42,8 @@
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             text-align: center; color: white; z-index: 10; width: 90%;
         }
-        .hero-content h1 { font-size: 4.5rem; margin-bottom: 1rem; text-shadow: 3px 3px 15px rgba(0,0,0,0.8);color:white; }
-        .hero-content p { font-size: 1.5rem; margin-bottom: 2rem; text-shadow: 1px 1px 10px rgba(0,0,0,0.9);color:white; }
+        .hero-content h1 { font-size: 4.5rem; margin-bottom: 1rem; text-shadow: 3px 3px 15px rgba(0,0,0,0.8); color:white; }
+        .hero-content p { font-size: 1.5rem; margin-bottom: 2rem; text-shadow: 1px 1px 10px rgba(0,0,0,0.9); color:white; }
         .btn {
             background: var(--blue-primary); color:white; padding: 15px 40px;
             border-radius: 50px; font-weight: 600; font-size: 1.1rem; display: inline-block;
@@ -59,7 +59,7 @@
         }
         h2::after {
             content: ''; position: absolute; width: 70px; height: 5px;
-            bottom: -12px; left: 0;
+            bottom: -12px; left: 0; background: var(--blue-primary);
         }
 
         .grid-3 {
@@ -114,8 +114,8 @@
             100% { transform: translateX(0%); }
         }
 
-        body{ margin:0; background-color:white; font-family:sans-serif; }
-        .header{ width:100%; background-color:blue; display:flex; justify-content:space-between; padding:20px; }
+        /* ---- Header / Nav ---- */
+        .header{ width:100%; background-color: var(--blue-primary); display:flex; justify-content:space-between; align-items:center; padding:20px; position: relative; }
         .left{ display:flex; align-items:center; gap:15px; }
         .left img{ width:70px; height:70px; border-radius:20px; }
         .title{ color:white; font-size:40px; font-weight:bold; }
@@ -125,9 +125,34 @@
         .nav { display: flex; align-items: center; }
         .nav ul{ list-style:none; display:flex; gap:35px; justify-content: center; align-items: center; }
         .nav ul li{ color:white; font-size:20px; cursor:pointer; }
-        .nav ul li :hover{ padding: 5px; background-color: #f8f8f8; text-shadow:0 0 5px #b4c8d6; border-radius: 7px; }
+        .nav ul li:hover{ padding: 5px; background-color: #f8f8f8; text-shadow:0 0 5px #b4c8d6; border-radius: 7px; }
         .mylink { color: white; text-decoration: none; }
         .mylink:hover { color: black; }
+
+        /* Hamburger button (hidden on desktop) */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 32px;
+            height: 24px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 20;
+        }
+        .hamburger span {
+            display: block;
+            height: 4px;
+            width: 100%;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
 
         .travel-banner {
             background: #eef7f4;
@@ -147,11 +172,58 @@
         .footer-links a:hover { color: #34b47a; }
         .footer-bottom { margin-top: 15px; font-size: 13px; color: #888; }
 
+        /* ---- Responsive breakpoints ---- */
+        @media (max-width: 900px) {
+            .hamburger { display: flex; }
+            .nav ul {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: var(--blue-primary);
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+            .nav ul.open {
+                max-height: 400px;
+            }
+            .nav ul li {
+                width: 100%;
+                text-align: center;
+                padding: 15px 0;
+                border-top: 1px solid rgba(255,255,255,0.15);
+            }
+        }
+
         @media (max-width: 768px) {
             .hero-content h1 { font-size: 2.8rem; }
             .hero-content p { font-size: 1.2rem; }
             .hero { height: 70vh; }
             .gallery-slide img { height: 300px; }
+            main > div[style] {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+        }
+
+        @media (max-width: 700px) {
+            main { margin: 2.5rem auto; padding: 0 6%; }
+            h2 { font-size: 2rem; }
+            .grid-3 { gap: 1.5rem; }
+        }
+
+        @media (max-width: 480px) {
+            .header { padding: 12px 15px; }
+            .left img { width: 48px; height: 48px; border-radius: 12px; }
+            .title { font-size: 24px; }
+            .tagline { font-size: 12px; }
+            .hero-content h1 { font-size: 2rem; }
+            .hero-content p { font-size: 1rem; }
+            .btn { padding: 12px 28px; font-size: 1rem; }
+            h2 { font-size: 1.6rem; }
         }
     </style>
 </head>
@@ -165,8 +237,13 @@
             <div class="tagline">Desired Destinations</div>
         </div>
     </div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
     <div class="nav">
-        <ul>
+        <ul id="navMenu">
             <li><a href="home.html" class="mylink">Home</a></li>
             <li><a href="destination.html" class="mylink">Destinations</a></li>
             <li><a href="travel tips.html" class="mylink">Travel Tips</a></li>
@@ -195,7 +272,7 @@
       <div style="display:grid; grid-template-columns: 1fr 350px; gap:4rem; margin-bottom:5rem;">
           <div>
               <h2>About Nathia Gali</h2>
-              <p>Nathia Gali is one of the most beautiful hill stations in the Galiyat region of KPK. Surrounded by thick pine forests, cool weather, and breathtaking views of the mountains, it’s a perfect weekend getaway from Islamabad and a favorite spot for nature lovers and trekkers.</p>
+              <p>Nathia Gali is one of the most beautiful hill stations in the Galiyat region of KPK. Surrounded by thick pine forests, cool weather, and breathtaking views of the mountains, it's a perfect weekend getaway from Islamabad and a favorite spot for nature lovers and trekkers.</p>
           </div>
           <div class="sidebar">
               <h3>Quick Facts</h3>
@@ -220,7 +297,7 @@
               <div class="card">
                   <img src="nathiagali/n7.jpg" alt="Church">
                   <div class="card-body">
-                      <h3>St. Matthew’s Church</h3>
+                      <h3>St. Matthew's Church</h3>
                       <p>Beautiful British-era church in the middle of pine trees.</p>
                   </div>
               </div>
@@ -235,7 +312,7 @@
       </section>
 
       <section class="gallery">
-          <h2 style="text-align:center; margin-bottom:2rem;">Photo Gallery</h2>
+          <h2 style="text-align:center; margin-bottom:2rem; display:block;">Photo Gallery</h2>
           <div class="gallery-slides">
               <div class="gallery-slide"><img src="nathiagali/n1.jpg" alt="Nathia Gali"></div>
               <div class="gallery-slide"><img src="nathiagali/n2.jpg" alt="Nathia Gali"></div>
@@ -253,7 +330,7 @@
 
       <section>
           <h2>How to Reach</h2>
-          <ul style="font-size:1.1rem; line-height:2;">
+          <ul style="font-size:1.1rem; line-height:2; padding-left: 1.2rem;">
               <li><strong>By Road:</strong> 2–3 hours from Islamabad via Murree</li>
               <li><strong>Public Transport:</strong> Buses/Hiace from Rawalpindi & Abbottabad</li>
               <li><strong>Best Route:</strong> Islamabad → Murree → Donga Gali → Nathia Gali</li>
@@ -265,13 +342,13 @@
           <p>Carry warm jacket even in summer (nights are cold)</p>
           <p>Try local corn (bhutta) and tea at roadside stalls</p>
           <p>Book hotels in advance during weekends & Eid holidays</p>
-          <p>Don’t miss sunrise from Mukeshpuri Top</p>
+          <p>Don't miss sunrise from Mukeshpuri Top</p>
       </section>
   </main>
 
   <div class="travel-banner">
       <h2><strong>Safe travels with Travel Sphere</strong></h2>
-      <p>"Thanks for choosing TravelSphere as your travel companion. Our goal is to help you explore Pakistan with reliable tips, honest recommendations, and easy-to-follow guides. Keep discovering new places, stay curious, and let every journey become a beautiful story. Travel safe, and we hope to guide you again soon!"</p>
+      <p>Thanks for choosing TravelSphere as your travel companion. Our goal is to help you explore Pakistan with reliable tips, honest recommendations, and easy-to-follow guides. Keep discovering new places, stay curious, and let every journey become a beautiful story. Travel safe, and we hope to guide you again soon!</p>
       <a href="#" class="button">Join Now</a>
   </div>
 
@@ -285,5 +362,25 @@
       </div>
       <p class="footer-bottom">© 2025 Travel Sphere — All Rights Reserved.</p>
   </footer>
+
+  <script>
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navMenu = document.getElementById('navMenu');
+
+    hamburgerBtn.addEventListener('click', () => {
+      const isOpen = navMenu.classList.toggle('open');
+      hamburgerBtn.classList.toggle('open', isOpen);
+      hamburgerBtn.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close menu when a nav link is tapped (mobile)
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+        hamburgerBtn.classList.remove('open');
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
 </body>
 </html>

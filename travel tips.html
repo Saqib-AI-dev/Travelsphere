@@ -4,38 +4,140 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>Travel Tips – TravelSphere</title>
-<link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style>
         /*Auto adjust*/
-
         *, *::before, *::after { box-sizing: border-box; }
-body { margin: 0; font-family: system-ui, sans-serif; }
+        body { margin: 0; font-family: system-ui, sans-serif; }
 
-.container {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 16px;
-}
+        img, video, iframe { max-width: 100%; height: auto; display: block; }
 
-img, video, iframe { max-width: 100%; height: auto; display: block; }
+        /* Optional: nicer text scaling on huge screens */
+        @media (min-width: 1920px) { html { font-size: 18px; } }
 
-/* This one line makes your layout auto-adjust on ALL devices */
-.grid {
-  display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}
-
-/* Optional: nicer text scaling on huge screens */
-@media (min-width: 1920px) { html { font-size: 18px; } }
         body{
             margin:0;
+            background-color:white;
             font-family: Arial, sans-serif;
-            background:#f7f7f7;
             line-height:1.6;
         }
 
+        /* Header Container */
+        .header{
+            width:100%;
+            background-color:blue;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:20px 30px;
+            position:relative;
+        }
+
+        /* Left Side: Logo + Name */
+        .left{
+            display:flex;
+            align-items:center;
+            gap:15px;
+        }
+
+        .left img{
+            width:70px;
+            height:70px;
+            border-radius:20px;
+        }
+
+        .title{
+            color:white;
+            font-size:40px;
+            font-weight:bold;
+        }
+        .title:hover{
+            color:black;
+            text-shadow:0 0 5px #0099ff;
+            cursor:pointer;
+        }
+
+        .tagline{
+            color:white;
+            font-size:15px;
+            margin-top:-2px;
+        }
+        .tagline:hover{
+            color:black;
+            text-shadow:0 0 5px #0099ff;
+            cursor:pointer;
+        }
+
+        /* Navigation Menu */
+        .nav ul{
+            list-style:none;
+            display:flex;
+            gap:35px;
+            margin:0;
+            padding:0;
+        }
+
+        .nav ul li{
+            color:white;
+            font-size:20px;
+            cursor:pointer;
+        }
+        .nav ul li:hover{
+            padding: 5px;
+            background-color: #f8f8f8;
+            text-shadow:0 0 5px #b4c8d6;
+            border-radius: 7px;
+        }
+
+        /* normal link */
+        .mylink {
+            color: white;
+            text-decoration: none;
+        }
+        .mylink:visited {
+            color: white;
+        }
+        .mylink:hover {
+            color: black;
+        }
+        .mylink:active {
+            color: black;
+        }
+
+        /* Hamburger button - hidden on desktop */
+        .hamburger{
+            display:none;
+            flex-direction:column;
+            justify-content:space-between;
+            width:32px;
+            height:24px;
+            background:none;
+            border:none;
+            cursor:pointer;
+            padding:0;
+            z-index:20;
+        }
+
+        .hamburger span{
+            display:block;
+            height:3px;
+            width:100%;
+            background-color:white;
+            border-radius:2px;
+            transition:transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .hamburger.open span:nth-child(1){
+            transform:translateY(10px) rotate(45deg);
+        }
+        .hamburger.open span:nth-child(2){
+            opacity:0;
+        }
+        .hamburger.open span:nth-child(3){
+            transform:translateY(-10px) rotate(-45deg);
+        }
+
+        /* Page content container */
         .container{
             width:90%;
             max-width:1000px;
@@ -72,104 +174,78 @@ img, video, iframe { max-width: 100%; height: auto; display: block; }
             color:white;
         }
 
+        /* ===== Responsive rules ===== */
+
+        /* Tablet and below: switch to hamburger nav */
+        @media (max-width:900px){
+            .hamburger{
+                display:flex;
+            }
+
+            .nav{
+                position:absolute;
+                top:100%;
+                left:0;
+                width:100%;
+                background-color:blue;
+                overflow:hidden;
+                max-height:0;
+                transition:max-height 0.3s ease;
+                z-index:10;
+            }
+
+            .nav.open{
+                max-height:400px;
+            }
+
+            .nav ul{
+                flex-direction:column;
+                gap:0;
+            }
+
+            .nav ul li{
+                width:100%;
+                text-align:center;
+                padding:15px 0;
+                border-top:1px solid rgba(255,255,255,0.2);
+            }
+        }
+
         @media(max-width:700px){
             .section{
                 text-align:center;
             }
+
+            .header{
+                padding:15px 20px;
+            }
+
+            .title{
+                font-size:28px;
+            }
         }
 
-        /*Header starts*/
+        @media (max-width:480px){
+            .left img{
+                width:50px;
+                height:50px;
+            }
 
-        body{
-        margin:0;
-        background-color:white;
-        font-family:sans-serif;
-    }
+            .title{
+                font-size:22px;
+            }
 
-    /* Header Container */
-    .header{
-        width:100%;
-        background-color:blue;
-        display:flex;
-        justify-content:space-between;
-        padding:30px;
-    }
+            .tagline{
+                font-size:12px;
+            }
 
-    /* Left Side: Logo + Name */
-    .left{
-        display:flex;
-        align-items:center;
-        gap:15px;
-    }
-
-    .left img{
-        width:70px;
-        height:70px;
-        border-radius:20px;
-    }
-
-    .title{
-        color:white;
-        font-size:40px;
-        font-weight:bold;
-    }
-    .title:hover{
-        color:black;
-        text-shadow:0 0 5px #0099ff;
-        cursor:pointer;
-    }
-
-    .tagline{
-        color:white;
-        font-size:15px;
-        margin-top:-2px;
-    }
-    .tagline:hover{
-        color:black;
-        text-shadow:0 0 5px #0099ff;
-        cursor:pointer;
-    }
-
-    /* Navigation Menu */
-    .nav ul{
-        list-style:none;
-        display:flex;
-        gap:35px;
-    }
-
-    .nav ul li{
-        color:white;
-        font-size:20px;
-        cursor:pointer;
-    }
-    .nav ul li :hover{
-        padding: 5px;
-        background-color: #f8f8f8;
-        text-shadow:0 0 5px #b4c8d6;
-        border-radius: 7px;
-    }
-
-     /* normal link */
-.mylink {
-    color: white;          /* link text color */
-    text-decoration: none; /* removes underline */
-}
-
-/* visited link */
-.mylink:visited {
-    color: white;          /* keep same color after clicking */
-}
-
-/* when mouse is over */
-.mylink:hover {
-    color: black;            /* optional: change color on hover */
-}
-
-/* when clicking */
-.mylink:active {
-    color: black;
-}
-
+            .container{
+                width:100%;
+                margin:20px auto;
+                padding:15px;
+                border-radius:12px;
+            }
+        }
     </style>
 </head>
 
@@ -186,8 +262,15 @@ img, video, iframe { max-width: 100%; height: auto; display: block; }
         </div>
     </div>
 
+    <!-- HAMBURGER BUTTON (mobile/tablet only) -->
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
     <!-- NAVIGATION -->
-    <div class="nav">
+    <div class="nav" id="navMenu">
         <ul>
             <li><a href="home.html" class="mylink">Home</a></li>
             <li><a href="destination.html" class="mylink">Destinations</a></li>
@@ -251,6 +334,26 @@ img, video, iframe { max-width: 100%; height: auto; display: block; }
     </div>
 
 </div>
+
+<script>
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navMenu = document.getElementById('navMenu');
+
+    hamburgerBtn.addEventListener('click', () => {
+        const isOpen = navMenu.classList.toggle('open');
+        hamburgerBtn.classList.toggle('open');
+        hamburgerBtn.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close menu when a nav link is tapped (mobile UX)
+    navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('open');
+            hamburgerBtn.classList.remove('open');
+            hamburgerBtn.setAttribute('aria-expanded', 'false');
+        });
+    });
+</script>
 
 </body>
 </html>

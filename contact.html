@@ -101,17 +101,12 @@
         /* ==================== CONTACT SECTION STYLING ==================== */
         .contact-section {
             position: relative;
-            background: url('yourbackground.jpg') no-repeat center/cover;
+            background: linear-gradient(135deg, #eaf3ff, #d7e8ff);
             padding: 70px 20px;
-            color: whit;
+            color: #1a1a1a;
         }
         .contact-overlay {
-            position: absolute;
-            inset: 0;
-            background: white;/*linear-gradient(135deg, #0a2ed2, #1e90ff); /* Blue overlay */
-            z-index: 1;
-            width: 100%; /* FIXED: Changed from 1410px to fit all screens */
-            min-width: 100%; /* NEW: Ensures overlay doesn't shrink on small screens */
+            display: none; /* No longer needed: was covering a broken image reference */
         }
         .contact-container {
             position: relative;
@@ -203,6 +198,68 @@
             transform: translateY(-3px);
         }
 
+        /* ==================== HAMBURGER MENU ==================== */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 8px;
+        }
+        .hamburger span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-wrap: wrap;
+                padding: 18px 20px;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .nav {
+                width: 100%;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.35s ease;
+            }
+            .nav.open {
+                max-height: 400px;
+            }
+            .nav ul {
+                flex-direction: column;
+                gap: 0;
+                padding-top: 20px;
+            }
+            .nav ul li {
+                padding: 12px 0;
+                border-top: 1px solid rgba(255,255,255,0.15);
+            }
+            .left img {
+                width: 55px;
+                height: 55px;
+            }
+            .title { font-size: 28px; }
+            .tagline { font-size: 13px; }
+        }
+
+        @media (max-width: 480px) {
+            .title { font-size: 22px; }
+            .tagline { font-size: 12px; }
+        }
+
         /* RESPONSIVE LAYOUT */
         @media (max-width: 850px) {
             .contact-container {
@@ -238,7 +295,13 @@
                 <div class="tagline">Desired Destinations</div>
             </div>
         </div>
-        <div class="nav">
+        <!-- HAMBURGER BUTTON (mobile only) -->
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav" id="navMenu">
             <ul>
                 <li><a href="home.html" class="mylink">Home</a></li>
                 <li><a href="destination.html" class="mylink">Destinations</a></li>
@@ -288,5 +351,25 @@
             </div>
         </div>
     </section>
+
+<script>
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navMenu = document.getElementById('navMenu');
+
+    hamburgerBtn.addEventListener('click', () => {
+        const isOpen = navMenu.classList.toggle('open');
+        hamburgerBtn.classList.toggle('active');
+        hamburgerBtn.setAttribute('aria-expanded', isOpen);
+    });
+
+    navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('open');
+            hamburgerBtn.classList.remove('active');
+            hamburgerBtn.setAttribute('aria-expanded', 'false');
+        });
+    });
+</script>
+
 </body>
 </html>
