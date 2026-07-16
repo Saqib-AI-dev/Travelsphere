@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures proper scaling on all devices -->
+    <title>Contact</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        /* ==================== BASE STYLING ==================== */
+        *, *::before, *::after {
+            box-sizing: border-box; /* NEW: Prevents padding/margin from breaking layout */
+        }
+        body {
+            margin: 0;
+            background-color: white;
+            font-family: sans-serif;
+        }
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+        img, video, iframe {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ==================== HEADER STYLING ==================== */
+        .header {
+            width: 100%; /* FIXED: Changed from 104.5% to prevent overflow on small screens */
+            background-color: blue;
+            display: flex;
+            justify-content: space-between;
+            padding: 30px;
+        }
+        .left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .left img {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+        }
+        .title {
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+        }
+        .title:hover {
+            color: black;
+            text-shadow: 0 0 5px #0099ff;
+            cursor: pointer;
+        }
+        .tagline {
+            color: white;
+            font-size: 15px;
+            margin-top: -2px;
+        }
+        .tagline:hover {
+            color: black;
+            text-shadow: 0 0 5px #0099ff;
+            cursor: pointer;
+        }
+       
+        
+             .nav ul{
+        list-style:none;
+        display:flex;
+        gap:35px;
+    }
+
+    .nav ul li{
+        color:white;
+        font-size:20px;
+        cursor:pointer;
+    }
+    .nav ul li :hover{
+        padding: 5px;
+        background-color: #f8f8f8;
+        text-shadow:0 0 5px #b4c8d6;
+        border-radius: 7px;
+        }
+        .mylink {
+            color: white;
+            text-decoration: none;
+        }
+        .mylink:visited {
+            color: white;
+        }
+        .mylink:hover {
+            color: black;
+        }
+        .mylink:active {
+            color: black;
+        }
+
+        /* ==================== CONTACT SECTION STYLING ==================== */
+        .contact-section {
+            position: relative;
+            background: url('yourbackground.jpg') no-repeat center/cover;
+            padding: 70px 20px;
+            color: whit;
+        }
+        .contact-overlay {
+            position: absolute;
+            inset: 0;
+            background: white;/*linear-gradient(135deg, #0a2ed2, #1e90ff); /* Blue overlay */
+            z-index: 1;
+            width: 100%; /* FIXED: Changed from 1410px to fit all screens */
+            min-width: 100%; /* NEW: Ensures overlay doesn't shrink on small screens */
+        }
+        .contact-container {
+            position: relative;
+            z-index: 2;
+            max-width: 1100px;
+            width: 100%; /* NEW: Ensures container scales properly */
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        /* LEFT SIDE INFO */
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        .contact-info h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .contact-subtext {
+            opacity: 0.8;
+            margin-bottom: 25px;
+        }
+        .info-box {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .icon {
+            font-size: 32px;
+            margin-right: 15px;
+            background: white;
+            color: #00327a;
+            padding: 10px;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .info-box h4 {
+            font-size: 18px;
+        }
+
+        /* RIGHT SIDE FORM */
+        .contact-form-box {
+            flex: 1;
+            min-width: 330px;
+            background: blue;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            color: white;
+        }
+        .contact-form-box input,
+        .contact-form-box textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: none;
+            border-bottom: 2px solid #bcd0e8;
+            font-size: 15px;
+            outline: none;
+            transition: border-color .3s;
+            box-sizing: border-box; /* NEW: Prevents padding from breaking width */
+            border-radius: 20px;
+        }
+        .contact-form-box input:focus,
+        .contact-form-box textarea:focus {
+            border-color: #1e40af;
+        }
+        .send-btn {
+            display: inline-block;
+            background: white;
+            color: black;
+            padding: 10px 22px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background .3s, transform .2s;
+        }
+        .send-btn:hover {
+            background: #152f80;
+            transform: translateY(-3px);
+        }
+
+        /* RESPONSIVE LAYOUT */
+        @media (max-width: 850px) {
+            .contact-container {
+                flex-direction: column;
+                text-align: center;
+                padding: 10px; /* NEW: Better spacing on small screens */
+            }
+            .contact-info, .contact-form-box {
+                min-width: 100%; /* NEW: Full width on mobile */
+            }
+            .contact-info h2 {
+                font-size: 28px; /* NEW: Slightly smaller heading on mobile */
+            }
+            .contact-form-box input,
+            .contact-form-box textarea {
+                font-size: 16px; /* NEW: Prevents mobile zoom when typing */
+            }
+        }
+
+        /* NEW: Ensure no zoom on mobile when typing */
+        input, textarea {
+            font-size: 16px !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER SECTION -->
+    <div class="header">
+        <div class="left">
+            <img src="logo.png" alt="logo">
+            <div>
+                <div class="title">Travel Sphere</div>
+                <div class="tagline">Desired Destinations</div>
+            </div>
+        </div>
+        <div class="nav">
+            <ul>
+                <li><a href="home.html" class="mylink">Home</a></li>
+                <li><a href="destination.html" class="mylink">Destinations</a></li>
+                <li><a href="travel tips.html" class="mylink">Travel Tips</a></li>
+                <li><a href="contact.html" class="mylink">Contact</a></li>
+                <li><a href="Aboutus.html" class="mylink">About Us</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact-section">
+        <div class="contact-overlay"></div>
+        <div class="contact-container">
+            <!-- Left Side Contact Details -->
+            <div class="contact-info">
+                <h2>Contact Us</h2>
+                <p class="contact-subtext">
+                    If you have any questions or need travel guidance, feel free to contact us anytime.
+                </p>
+                <div class="info-box">
+                    <div class="icon">📞</div>
+                    <div>
+                        <h4>Phone</h4>
+                        <p>+92 300 0000000</p>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <div class="icon">✉️</div>
+                    <div>
+                        <h4>Email (Official)</h4>
+                        <p>travelsphere.business@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side Form -->
+            <div class="contact-form-box">
+                <h3>Send Message</h3>
+                <!-- NEW: Simple mailto form (no JavaScript) -->
+                <form action="mailto:travelsphere.help@gmail.com" method="post" enctype="text/plain">
+                    <input type="text" name="name" placeholder="Full Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <textarea name="message" placeholder="Type your message..." required></textarea>
+                    <button type="submit" class="send-btn">Send</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Travel Sphere</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+<style>
+    /*Auto adjust */
+
+    *, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; }
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+img, video, iframe { max-width: 100%; height: auto; display: block; }
+
+/* This one line makes your layout auto-adjust on ALL devices */
+.grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* Optional: nicer text scaling on huge screens */
+@media (min-width: 1920px) { html { font-size: 18px; } }
+
+    /* Main Page Background */
+    body{
+        margin:0;
+        background-color:white;
+        font-family:sans-serif;
+    }
+
+    /* Header Container */
+    .header{
+        width:100%;
+        background-color:blue;
+        display:flex;
+        justify-content:space-between;
+        padding:30px;
+    }
+
+    /* Left Side: Logo + Name */
+    .left{
+        display:flex;
+        align-items:center;
+        gap:15px;
+    }
+
+    .left img{
+        width:70px;
+        height:70px;
+        border-radius:20px;
+    }
+
+    .title{
+        color:white;
+        font-size:40px;
+        font-weight:bold;
+    }
+    .title:hover{
+        color:black;
+        text-shadow:0 0 5px #0099ff;
+        cursor:pointer;
+    }
+
+    .tagline{
+        color:white;
+        font-size:15px;
+        margin-top:-2px;
+    }
+    .tagline:hover{
+        color:black;
+        text-shadow:0 0 5px #0099ff;
+        cursor:pointer;
+    }
+
+    /* Navigation Menu */
+    .nav ul{
+        list-style:none;
+        display:flex;
+        gap:35px;
+    }
+
+    .nav ul li{
+        color:white;
+        font-size:20px;
+        cursor:pointer;
+    }
+    .nav ul li :hover{
+        padding: 5px;
+        background-color: #f8f8f8;
+        text-shadow:0 0 5px #b4c8d6;
+        border-radius: 7px;
+    }
+
+
+    /* =========================
+       SLIDING IMAGES + NAMES + ZOOM
+    ========================== */
+
+    /* ───── 1. Replace your .slider completely ───── */
+.slider{
+    width:100%;
+    overflow:hidden;
+    margin-top:80px;
+    background:white;
+    padding: 40px 0;                    /* NEW: adds nice spacing top & bottom */
+}
+
+/* ───── 2. Replace your .slider-track completely ───── */
+.slider-track{
+    display:flex;
+    width: max-content;                 /* ← MOST IMPORTANT LINE */
+    animation: slide 42s linear infinite;
+}
+
+/* ───── 3. Replace your entire .image-box + img + title block ───── */
+.image-box{
+    flex: 0 0 auto;                     /* ← SECOND MOST IMPORTANT LINE */
+    text-align:center;
+    padding: 0 35px;
+}
+
+.image-box img{
+    width:330px;
+    height:330px;
+    object-fit:cover;
+    object-position:center;
+    border-radius:35px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.25);
+    transition:transform 0.4s ease;
+    display:block;
+}
+
+.image-box img:hover{
+    transform:scale(1.12);
+}
+
+.img-title{
+    margin-top:18px;
+    font-size:26px;
+    font-weight:bold;
+    color:#1a1a1a;
+    text-shadow:0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* ───── 4. Replace your @keyframes slide ───── */
+@keyframes slide{
+    0%   { transform:translateX(0); }
+    100% { transform:translateX(-50%); }
+}
+
+/* ───── 5. Add this new line anywhere in <style> (optional but recommended) ───── */
+/*.slider-track:hover {
+    animation-play-state: paused;
+}*/
+    /* normal link */
+.mylink {
+    color: white;          /* link text color */
+    text-decoration: none; /* removes underline */
+}
+
+/* visited link */
+.mylink:visited {
+    color: white;          /* keep same color after clicking */
+}
+
+/* when mouse is over */
+.mylink:hover {
+    color: black;            /* optional: change color on hover */
+}
+
+/* when clicking */
+.mylink:active {
+    color: black;
+}
+
+/*Footer details*/
+
+/* --- TripAdvisor Bottom Banner --- */
+.travel-banner {
+    background: #eef7f4;
+    padding: 30px;
+    text-align: center;
+    border-top: 3px solid blue;
+    font-family: Arial, sans-serif;
+}
+
+.travel-banner h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #2f4f4f;
+}
+
+.travel-banner p {
+    font-size: 16px;
+    color: #444;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto 20px auto;
+}
+
+.travel-banner .button {
+    display: inline-block;
+    padding: 12px 25px;
+    background: blue;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.travel-banner .button:hover {
+    background: rgb(0, 113, 128);
+}
+
+
+/* --- Main Footer --- */
+.main-footer {
+    background: #222;
+    color: #ccc;
+    text-align: center;
+    padding: 25px 10px;
+    font-family: Arial, sans-serif;
+}
+
+.footer-title {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.footer-links a {
+    color: #ccc;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: #34b47a;
+}
+
+.footer-bottom {
+    margin-top: 15px;
+    font-size: 13px;
+    color: #888;
+}
+
+/*Intro start */
+
+/* ========== Intro Section Styles ========== */
+
+/* overall intro section spacing & background */
+.intro-section {
+  background-color: #f6fbf9;    /* light gentle background - change to fit your theme */
+  padding: 36px 16px;           /* vertical and horizontal padding */
+}
+
+/* center content and limit width for readable lines */
+.intro-inner {
+  max-width: 1000px;            /* central column width */
+  margin: 0 auto;               /* center horizontally */
+  text-align: left;
+  padding: 10px;
+}
+
+/* small tagline above the title */
+.intro-tag {
+  display: inline-block;
+  font-size: 13px;
+  color: #2f8a63;               /* accent color */
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: .4px;
+}
+
+/* main title */
+.intro-title {
+  margin: 0 0 12px 0;
+  font-size: 32px;              /* big heading */
+  color: #0b2b2a;               /* heading color */
+  line-height: 1.1;
+}
+
+/* paragraph text */
+.intro-text {
+  margin: 0 0 18px 0;
+  font-size: 16px;
+  color: #33383a;               /* paragraph color */
+  line-height: 1.6;
+  max-width: 80ch;              /* keep line length comfortable */
+}
+
+/* CTA button */
+.intro-cta {
+  display: inline-block;
+  background-color: #2f8a63;    /* button background (match tag accent) */
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color .2s ease, transform .12s ease;
+}
+
+/* hover effect for CTA */
+.intro-cta:hover {
+  background-color: #276e4f;
+  transform: translateY(-2px);
+}
+
+/* Responsive: on small screens make the title slightly smaller */
+@media (max-width: 520px) {
+  .intro-title { font-size: 24px; }
+  .intro-text  { font-size: 15px; }
+  .intro-inner { padding: 6px; }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER SECTION -->
+<div class="header">
+
+    <!-- LEFT SIDE -->
+    <div class="left">
+        <img src="logo.png" alt="logo">
+        <div>
+            <div class="title">Travel Sphere</div>
+            <div class="tagline">Desired Destinations</div>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <div class="nav">
+        <ul>
+            <li><a href="home.html" class="mylink">Home</a></li>
+            <li><a href="destination.html" class="mylink">Destinations</a></li>
+            <li><a href="travel tips.html" class="mylink">Travel Tips</a></li>
+            <li><a href="contact.html" class="mylink">Contact</a></li>
+            <li><a href="Aboutus.html" class="mylink">About Us</a></li>
+        </ul>
+    </div>
+
+</div>
+<!-- ========== TravelSphere Intro Section ========== -->
+<section class="intro-section">
+  <div class="intro-inner">
+    <!-- Small eyebrow / tagline -->
+    <div class="intro-tag" style="color:blue">Discover Pakistan</div>
+
+    <!-- Main heading -->
+    <h1 class="intro-title">Welcome to TravelSphere</h1>
+
+    <!-- Intro paragraph: change text here if you want -->
+    <p class="intro-text">
+      <strong>TravelSphere</strong>, Your friendly guide to exploring Pakistan’s beauty, culture,
+      and hidden wonders. Whether you're planning a family trip, a weekend getaway, or an adventure into the
+      mountains, we provide easy travel tips, local insights, and helpful recommendations to make your journey
+      smooth and memorable.
+    </p>
+
+    <!-- Call to action button (change link or text) -->
+    <a href="destination.html" class="intro-cta" style="color:white;background-color:blue;">Explore Destinations</a>
+  </div>
+</section>
+<!-- ========== End Intro Section ========== -->
+
+
+
+<!-- ===============================
+     SLIDING IMAGES WITH NAMES + ZOOM
+================================ -->
+<div class="slider">
+    <div class="slider-track">
+
+        <!-- ORIGINAL IMAGES -->
+        <div class="image-box">
+            <img src="seaview/s5.jpg">
+            <p class="img-title">Karachi Sea_view</p>
+        </div>
+
+        <div class="image-box">
+            <img src="faisal/faisal.jpg">
+            <p class="img-title">Faisal Mosque</p>
+        </div>
+
+        <div class="image-box">
+            <img src="BabuSar top.jpg">
+            <p class="img-title">BabuSar top</p>
+        </div>
+
+        <div class="image-box">
+            <img src="naran/img1.jpg">
+            <p class="img-title">Naran-Valley</p>
+        </div>
+
+        <div class="image-box">
+            <img src="lahore/l1.jpg">
+            <p class="img-title">Lahore</p>
+        </div>
+
+
+        <!-- DUPLICATE IMAGES FOR LOOP -->
+        <div class="image-box">
+            <img src="seaview/s5.jpg">
+            <p class="img-title">Karachi Sea_view</p>
+        </div>
+
+        <div class="image-box">
+            <img src="faisal/faisal.jpg">
+            <p class="img-title">Faisal Mosque</p>
+        </div>
+
+        <div class="image-box">
+            <img src="Babusar top.jpg">
+            <p class="img-title">BabuSar top</p>
+        </div>
+
+        <div class="image-box">
+            <img src="Naran kaghan valley.webp">
+            <p class="img-title">Naran Kaghan</p>
+        </div>
+
+        <div class="image-box">
+            <img src="lahore/l1.jpg">
+            <p class="img-title">Lahore</p>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- TripAdvisor Style Bottom Banner -->
+<div class="travel-banner">
+   <h2><strong>Safe travels with Travel Sphere</strong> </h2>
+    <p>
+        
+        "Thanks for choosing TravelSphere as your travel companion. Our goal is to help you explore Pakistan with reliable tips,
+         honest recommendations, and easy-to-follow guides. 
+         Keep discovering new places, stay curious, and let every journey become a beautiful story. Travel safe, and we hope to guide you again soon!"
+    </p>
+
+    <a href="#" class="button">Join Now</a>
+</div>
+
+<!-- Footer Section -->
+<footer class="main-footer">
+    <p class="footer-title">Travel Sphere</p>
+
+    <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Contact Us</a>
+        <a href="#">About Us</a>
+    </div>
+
+    <p class="footer-bottom">© 2026 Travel Sphere — All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

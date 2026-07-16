@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nathia Gali</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue-primary: #0066CC;
+            --blue-light: #87CEEB;
+            --blue-dark: #004080;
+            --white: #ffffff;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family: 'Poppins', sans-serif; background: var(--white); color: #333; line-height: 1.6; }
+        a { color: var(--blue-primary); text-decoration: none; }
+
+        .hero { position: relative; height: 90vh; overflow: hidden; margin-top: 0px; }
+        .slideshow { position: relative; width: 100%; height: 100%; }
+        .slide {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover; background-position: center;
+            opacity: 0; animation: fade 20s infinite;
+        }
+        .slide:nth-child(1) { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('nathiagali/n1.jpg'); animation-delay: 0s; }
+        .slide:nth-child(2) { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('nathiagali/n2.jpg'); animation-delay: 4s; }
+        .slide:nth-child(3) { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('nathiagali/n3.jpg'); animation-delay: 8s; }
+        .slide:nth-child(4) { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('nathiagali/n4.jpg'); animation-delay: 12s; }
+        .slide:nth-child(5) { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('nathiagali/n5.jpg'); animation-delay: 16s; }
+
+        @keyframes fade {
+            0% { opacity: 0; }
+            10% { opacity: 1; }
+            20% { opacity: 1; }
+            30% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        .hero-content {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            text-align: center; color: white; z-index: 10; width: 90%;
+        }
+        .hero-content h1 { font-size: 4.5rem; margin-bottom: 1rem; text-shadow: 3px 3px 15px rgba(0,0,0,0.8);color:white; }
+        .hero-content p { font-size: 1.5rem; margin-bottom: 2rem; text-shadow: 1px 1px 10px rgba(0,0,0,0.9);color:white; }
+        .btn {
+            background: var(--blue-primary); color:white; padding: 15px 40px;
+            border-radius: 50px; font-weight: 600; font-size: 1.1rem; display: inline-block;
+            transition: all 0.3s;
+        }
+        .btn:hover { background: #0052a3; transform: scale(1.08); }
+
+        main { max-width: 1400px; margin: 4rem auto; padding: 0 5%; }
+        section { margin-bottom: 5rem; }
+        h2 {
+            font-size: 2.5rem; color: var(--blue-primary); margin-bottom: 1.5rem;
+            position: relative; display: inline-block;
+        }
+        h2::after {
+            content: ''; position: absolute; width: 70px; height: 5px;
+            bottom: -12px; left: 0;
+        }
+
+        .grid-3 {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem; margin-top: 2rem;
+        }
+        .card {
+            background: white; border-radius: 15px; overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1); transition: transform 0.3s;
+        }
+        .card:hover { transform: translateY(-12px); }
+        .card img { width: 100%; height: 220px; object-fit: cover; }
+        .card-body { padding: 1.5rem; }
+        .card h3 { color: var(--blue-primary); margin-bottom: 0.8rem; }
+        .sidebar {
+            background: var(--blue-light); padding: 2rem; border-radius: 15px; color: var(--blue-dark);
+        }
+        .sidebar h3 { color: var(--blue-primary); margin-bottom: 1rem; }
+
+        .gallery {
+            margin: 4rem 0;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        .gallery-slides {
+            display: flex;
+            width: 500%;
+            animation: slide 25s infinite;
+        }
+        .gallery-slide {
+            width: 20%;
+            flex-shrink: 0;
+        }
+        .gallery-slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+        @keyframes slide {
+            0%   { transform: translateX(0%); }
+            15%  { transform: translateX(0%); }
+            20%  { transform: translateX(-20%); }
+            35%  { transform: translateX(-20%); }
+            40%  { transform: translateX(-40%); }
+            55%  { transform: translateX(-40%); }
+            60%  { transform: translateX(-60%); }
+            75%  { transform: translateX(-60%); }
+            80%  { transform: translateX(-80%); }
+            95%  { transform: translateX(-80%); }
+            100% { transform: translateX(0%); }
+        }
+
+        body{ margin:0; background-color:white; font-family:sans-serif; }
+        .header{ width:100%; background-color:blue; display:flex; justify-content:space-between; padding:20px; }
+        .left{ display:flex; align-items:center; gap:15px; }
+        .left img{ width:70px; height:70px; border-radius:20px; }
+        .title{ color:white; font-size:40px; font-weight:bold; }
+        .title:hover{ color:black; text-shadow:0 0 5px #0099ff; cursor:pointer; }
+        .tagline{ color:white; font-size:15px; margin-top:-2px; }
+        .tagline:hover{ color:black; text-shadow:0 0 5px #0099ff; cursor:pointer; }
+        .nav { display: flex; align-items: center; }
+        .nav ul{ list-style:none; display:flex; gap:35px; justify-content: center; align-items: center; }
+        .nav ul li{ color:white; font-size:20px; cursor:pointer; }
+        .nav ul li :hover{ padding: 5px; background-color: #f8f8f8; text-shadow:0 0 5px #b4c8d6; border-radius: 7px; }
+        .mylink { color: white; text-decoration: none; }
+        .mylink:hover { color: black; }
+
+        .travel-banner {
+            background: #eef7f4;
+            padding: 30px;
+            text-align: center;
+            border-top: 3px solid blue;
+            font-family: Arial, sans-serif;
+        }
+        .travel-banner h2 { margin-bottom: 10px; font-size: 24px; color: #2f4f4f; }
+        .travel-banner p { font-size: 16px; color: #444; line-height: 1.6; max-width: 700px; margin: 0 auto 20px auto; }
+        .travel-banner .button { display: inline-block; padding: 12px 25px; background: blue; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; }
+        .travel-banner .button:hover { background: rgb(0, 113, 128); }
+
+        .main-footer { background: #222; color: #ccc; text-align: center; padding: 25px 10px; font-family: Arial, sans-serif; }
+        .footer-title { font-size: 22px; margin-bottom: 10px; color: white; }
+        .footer-links a { color: #ccc; text-decoration: none; margin: 0 10px; font-size: 14px; }
+        .footer-links a:hover { color: #34b47a; }
+        .footer-bottom { margin-top: 15px; font-size: 13px; color: #888; }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.8rem; }
+            .hero-content p { font-size: 1.2rem; }
+            .hero { height: 70vh; }
+            .gallery-slide img { height: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="left">
+        <img src="logo.png" alt="logo">
+        <div>
+            <div class="title">Travel Sphere</div>
+            <div class="tagline">Desired Destinations</div>
+        </div>
+    </div>
+    <div class="nav">
+        <ul>
+            <li><a href="home.html" class="mylink">Home</a></li>
+            <li><a href="destination.html" class="mylink">Destinations</a></li>
+            <li><a href="travel tips.html" class="mylink">Travel Tips</a></li>
+            <li><a href="contact.html" class="mylink">Contact</a></li>
+            <li><a href="Aboutus.html" class="mylink">About Us</a></li>
+        </ul>
+    </div>
+  </div>
+
+  <section class="hero">
+      <div class="slideshow">
+          <div class="slide"></div>
+          <div class="slide"></div>
+          <div class="slide"></div>
+          <div class="slide"></div>
+          <div class="slide"></div>
+      </div>
+      <div class="hero-content">
+          <h1>Nathia Gali</h1>
+          <p>Pine-Covered Hill Station – Fresh Air, Trekking & Stunning Views</p>
+          <a href="#book" class="btn">Plan Your Trip</a>
+      </div>
+  </section>
+
+  <main>
+      <div style="display:grid; grid-template-columns: 1fr 350px; gap:4rem; margin-bottom:5rem;">
+          <div>
+              <h2>About Nathia Gali</h2>
+              <p>Nathia Gali is one of the most beautiful hill stations in the Galiyat region of KPK. Surrounded by thick pine forests, cool weather, and breathtaking views of the mountains, it’s a perfect weekend getaway from Islamabad and a favorite spot for nature lovers and trekkers.</p>
+          </div>
+          <div class="sidebar">
+              <h3>Quick Facts</h3>
+              <p><strong>Location:</strong> Abbottabad District, KPK</p>
+              <p><strong>Altitude:</strong> 2,410 meters</p>
+              <p><strong>Best Time:</strong> May – October</p>
+              <p><strong>Distance from Islamabad:</strong> 90 km (2–3 hours)</p>
+              <p><strong>Famous For:</strong> Pine forests, hiking, Mukeshpuri Top</p>
+          </div>
+      </div>
+
+      <section>
+          <h2>Top Attractions</h2>
+          <div class="grid-3">
+              <div class="card">
+                  <img src="nathiagali/n6.jpg" alt="Mukeshpuri">
+                  <div class="card-body">
+                      <h3>Mukeshpuri & Miranjani Trek</h3>
+                      <p>Easy-to-moderate hikes with panoramic mountain views.</p>
+                  </div>
+              </div>
+              <div class="card">
+                  <img src="nathiagali/n7.jpg" alt="Church">
+                  <div class="card-body">
+                      <h3>St. Matthew’s Church</h3>
+                      <p>Beautiful British-era church in the middle of pine trees.</p>
+                  </div>
+              </div>
+              <div class="card">
+                  <img src="nathiagali/n8.jpg" alt="Pipeline Track">
+                  <div class="card-body">
+                      <h3>Pipeline Walking Track</h3>
+                      <p>Peaceful 4–5 km forest walk – perfect for families.</p>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <section class="gallery">
+          <h2 style="text-align:center; margin-bottom:2rem;">Photo Gallery</h2>
+          <div class="gallery-slides">
+              <div class="gallery-slide"><img src="nathiagali/n1.jpg" alt="Nathia Gali"></div>
+              <div class="gallery-slide"><img src="nathiagali/n2.jpg" alt="Nathia Gali"></div>
+              <div class="gallery-slide"><img src="nathiagali/n3.jpg" alt="Nathia Gali"></div>
+              <div class="gallery-slide"><img src="nathiagali/n4.jpg" alt="Nathia Gali"></div>
+              <div class="gallery-slide"><img src="nathiagali/n5.jpg" alt="Nathia Gali"></div>
+          </div>
+      </section>
+
+      <section>
+          <h2>Best Time to Visit</h2>
+          <p><strong>May to October</strong> – Pleasant weather, green forests, perfect for trekking.</p>
+          <p>July–August: Monsoon brings misty beauty and occasional rain.</p>
+      </section>
+
+      <section>
+          <h2>How to Reach</h2>
+          <ul style="font-size:1.1rem; line-height:2;">
+              <li><strong>By Road:</strong> 2–3 hours from Islamabad via Murree</li>
+              <li><strong>Public Transport:</strong> Buses/Hiace from Rawalpindi & Abbottabad</li>
+              <li><strong>Best Route:</strong> Islamabad → Murree → Donga Gali → Nathia Gali</li>
+          </ul>
+      </section>
+
+      <section>
+          <h2>Tips for Visitors</h2>
+          <p>Carry warm jacket even in summer (nights are cold)</p>
+          <p>Try local corn (bhutta) and tea at roadside stalls</p>
+          <p>Book hotels in advance during weekends & Eid holidays</p>
+          <p>Don’t miss sunrise from Mukeshpuri Top</p>
+      </section>
+  </main>
+
+  <div class="travel-banner">
+      <h2><strong>Safe travels with Travel Sphere</strong></h2>
+      <p>"Thanks for choosing TravelSphere as your travel companion. Our goal is to help you explore Pakistan with reliable tips, honest recommendations, and easy-to-follow guides. Keep discovering new places, stay curious, and let every journey become a beautiful story. Travel safe, and we hope to guide you again soon!"</p>
+      <a href="#" class="button">Join Now</a>
+  </div>
+
+  <footer class="main-footer">
+      <p class="footer-title">Travel Sphere</p>
+      <div class="footer-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Contact Us</a>
+          <a href="#">About Us</a>
+      </div>
+      <p class="footer-bottom">© 2025 Travel Sphere — All Rights Reserved.</p>
+  </footer>
+</body>
+</html>

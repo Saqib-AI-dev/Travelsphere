@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+<title> Destinations </title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+
+<style>
+/*Auto adjust */
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; }
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+img, video, iframe { max-width: 100%; height: auto; display: block; }
+
+/* This one line makes your layout auto-adjust on ALL devices */
+.grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* Optional: nicer text scaling on huge screens */
+@media (min-width: 1920px) { html { font-size: 18px; } }
+    /* Main Page Background */
+    body{
+        margin:0;
+        background-color:white;
+        font-family:sans-serif;
+        
+    }
+
+    /* Header Container */
+    .header{
+        position: fixed;   /* Fixes the header */
+    top: 0;            /* Sticks it to top */
+    left: 0;
+    
+    z-index: 1000;
+        width:100%;
+        background-color:blue;
+        display:flex;
+        justify-content:space-between;
+        padding:35px;
+    }
+
+    /* Left Side: Logo + Name */
+    .left{
+        display:flex;
+        align-items:center;
+        gap:15px;
+    }
+
+    .left img{
+        width:70px;
+        height:70px;
+        border-radius:20px;
+    }
+
+    .title{
+        color:white;
+        font-size:40px;
+        font-weight:bold;
+    }
+    .title:hover{
+        color:black;
+        text-shadow:0 0 5px #0099ff;
+        cursor:pointer;
+    }
+
+    .tagline{
+        color:white;
+        font-size:15px;
+        margin-top:-2px;
+    }
+    .tagline:hover{
+        color:black;
+        text-shadow:0 0 5px #0099ff;
+        cursor:pointer;
+    }
+
+    /* Navigation Menu */
+    .nav ul{
+        list-style:none;
+        display:flex;
+        gap:35px;
+    }
+
+    .nav ul li{
+        color:white;
+        font-size:20px;
+        cursor:pointer;
+    }
+    .nav ul li :hover{
+        padding: 5px;
+        background-color: #f8f8f8;
+        text-shadow:0 0 5px #b4c8d6;
+        border-radius: 7px;
+    }
+    /* link not change colour*/
+    .mylink {
+    color: white;          /* link text color */
+    text-decoration: none; /* removes underline */
+}
+
+    /* normal link */
+.mylink {
+    color: white;          /* link text color */
+    text-decoration: none; /* removes underline */
+}
+
+/* visited link */
+.mylink:visited {
+    color: white;          /* keep same color after clicking */
+}
+
+/* when mouse is over */
+.mylink:hover {
+    color: black;            /* optional: change color on hover */
+}
+
+/* when clicking */
+.mylink:active {
+    color: black;
+}
+
+
+/*Template*/
+/* Whole page background */
+body {
+    background-color: white; 
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    color: white;
+    padding-top: 120px;
+}
+
+/* Section Title */
+.section-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* Container for cards (makes them appear side-by-side) */
+.cards-container {
+    display: flex;
+    gap: 20px; /* space between cards */
+    flex-wrap: wrap; /* responsive */
+}
+
+/* Each individual card */
+.card {
+    background: blue; /* dark navy color */
+    width: 420px;
+    
+    border-radius: 15px;
+    padding-bottom: 15px;
+    overflow: hidden; /* rounds image corners */
+}
+
+/* Card images */
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover; /* crop nicely */
+}
+
+/* Heading inside card */
+.card h3 {
+    margin: 15px;
+    font-size: 18px;
+}
+
+/* Description text */
+.card p {
+    margin: 0 15px 15px 15px;
+    color: #b8c4d1;
+    font-size: 14px;
+}
+
+/* Tag buttons at bottom */
+.tags {
+    margin-left: 15px;
+}
+
+.tags span {
+    background: white;
+    padding: 6px 12px;
+    margin-right: 8px;
+    font-size: 13px;
+    border-radius: 10px;
+    color: black;
+}
+
+
+.card:hover {
+    transform: translateY(-10px); /* Moves up a bit */
+    transition: 0.3s;
+}
+
+
+</style>
+
+
+
+
+
+    </head>
+<body>
+<!-- HEADER SECTION -->
+<div class="header">
+
+    <!-- LEFT SIDE -->
+    <div class="left">
+        <img src="logo.png" alt="logo">
+        <div>
+            <div class="title">Travel Sphere</div>
+            <div class="tagline">Desired Destinations</div>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <div class="nav">
+        <ul>
+            <li><a href="home.html" class="mylink">Home</a></li>
+            <li><a href="destination.html" class="mylink">Destinations</a></li>
+            <li><a href="travel tips.html"class ="mylink"> Travel Tips</li>
+            <li><a href="contact.html" class="mylink">Contact</a></li>
+            <li><a href="Aboutus.html" class="mylink">About us</a> </li>
+        </ul>
+    </div>
+
+</div>
+
+<!-- Section Title -->
+    <h2 class="section-title">Featured Destinations</h2>
+
+    <!-- Main container holding all cards -->
+    <div class="cards-container">
+
+        <!-- CARD 1 -->
+        <div class="card">
+            <!-- Top image -->
+            <a href="naran.html"><img src="naran/img3.jpg" alt="Beach Algarve"></a>
+
+            <!-- Text content -->
+            <h3>Naran-Valley</h3>
+            <p>Pakistan's Hidden Paradise – Crystal Lakes, Snow-Capped Peaks & Lush Green Meadows
+
+</p>
+
+            <!-- Buttons -->
+            <div class="tags">
+                <a href="naran.html" class="mylink"><span>Lets_tour</span></a>
+                <a href="naran.html" class="mylink"><span>More-details</span></a>
+                
+            </div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="card">
+            <a href="faisal.html"><img src="faisal/faisal.jpg" alt="FaisalMosque"></a>
+
+            <h3>Faisal_Mosque</h3>
+            <p>Islamabad's Architectural Masterpiece – The Largest Mosque in South Asia</p>
+
+            <div class="tags">
+               <a href="faisal.html" class="mylink"><span>Lets_tour</span></a>
+                <a href="faisal.html" class="mylink"><span>More-details</span></a>
+                
+            </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="card">
+            <a href="seaview.html"><img src="seaview/s3.jpg" alt="Karachi Sea-view"></a>
+
+            <h3>Sea-view Karachi</h3>
+            <p>Clifton Beach & Do Darya – Karachi’s Famous Seaside with Sunset Views & Food Street
+
+Plan Your Visit</p>
+
+            <div class="tags">
+               <a href="seaview.html" class="mylink"><span>Lets_tour</span></a>
+                <a href="seaview.html" class="mylink"><span>More-details</span></a>
+            </div>
+        </div>
+
+
+          <!-- CARD 4 -->
+        <div class="card">
+            <!-- Top image -->
+            <a href="badshai mosque.html"><img src="lahore/l1.jpg" alt="Lahore"></a>
+
+            <!-- Text content -->
+            <h3>Lahore</h3>
+            <p>The Heart of Pakistan – Badshahi Mosque, Food Street & Rich Culture</p>
+
+            <!-- Buttons -->
+            <div class="tags">
+                <a href="badshai mosque.html" class="mylink"><span>Lets_tour</span></a>
+                <a href="badshai mosque.html" class="mylink"><span>More-details</span></a>
+            </div>
+        </div>
+
+
+          <!-- CARD 5 -->
+        <div class="card">
+            <!-- Top image -->
+           <a href="nathiya gali.html"><img src="nathiagali/n3.jpg" alt="Nathiya Gali"></a>
+
+            <!-- Text content -->
+            <h3>Nathiya Gali</h3>
+            <p>Pine-Covered Hill Station – Fresh Air, Trekking & Stunning Views</p>
+
+            <!-- Buttons -->
+            <div class="tags">
+                <a href="nathiya gali.html" class="mylink"><span>Lets_tour</span></a>
+                <a href="nathiya gali.html" class="mylink"><span>More-details</span></a>
+            </div>
+        </div>
+    </div>  
+
+
+
+
+
+
+
+</body>
+
+</html>
